@@ -1,0 +1,76 @@
+
+.register-modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+  }
+  
+  .register-modal.show {
+    display: block;
+  }
+  
+  .register-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  
+  .register-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 90%;
+}
+
+.register-modal.show {
+    display: block;
+}
+
+.register-modal-content {
+    text-align: center;
+}
+
+/* שדות טקסט */
+mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* תיבת סימון */
+.checkbox-container {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* כפתורים */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.turquoise-button {
+    background-color: #40E0D0 !important; /* צבע טורקיז */
+    color: white !important;
+    font-weight: bold;
+}
+
+/* אייקונים */
+mat-icon {
+    margin-right: 5px;
+}

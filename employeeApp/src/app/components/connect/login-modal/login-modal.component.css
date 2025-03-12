@@ -1,0 +1,82 @@
+/* 
+*/
+/* login-modal.component.css */
+
+.login-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.login-modal.show {
+  display: block;
+}
+
+.login-modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.login-modal-content h2 {
+  margin-top: 0;
+}
+
+.login-modal-content form {
+  margin-top: 20px;
+}
+
+.login-modal-content button {
+  margin-top: 20px;
+}
+.login-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  max-width: 90%;
+}
+
+.login-modal.show {
+  display: block;
+}
+
+.login-modal-content {
+  text-align: center;
+}
+
+/* שדות טקסט */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* כפתורים */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* עיצוב כפתור טורקיז */
+.turquoise-button {
+  background-color: #40E0D0 !important; /* צבע טורקיז */
+  color: white !important;
+  font-weight: bold;
+}
+
+/* אייקונים */
+mat-icon {
+  margin-right: 5px;
+}
