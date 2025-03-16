@@ -1,5 +1,5 @@
-
-<div class="register-modal" [class.show]="isVisible">
+<!-- 
+<div class="register-modal" >
     <div class="register-modal-content">
         <h2>Register</h2>
         <form [formGroup]="registerForm" (submit)="onSubmit()">
@@ -32,6 +32,43 @@
                     <mat-icon>close</mat-icon> Close
                 </button>
             </div>
+            <p>already have an acoount? <a routerLink="/login">Sign in</a></p>
+        </form>
+    </div>
+</div> -->
+<div class="register-modal">
+    <div class="register-modal-content">
+        <h2>Register</h2>
+        <form [formGroup]="registerForm" (submit)="onSubmit()">
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" placeholder="Enter your email">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" placeholder="Enter your name">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" placeholder="Enter your password">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Phone</mat-label>
+                <input matInput type="text" formControlName="phone" placeholder="Enter your phone">
+            </mat-form-field>
+
+            <div class="button-group">
+                <button mat-raised-button class="turquoise-button" type="submit">
+                    <mat-icon>send</mat-icon> Sign up
+                </button>
+                <button mat-raised-button color="warn" (click)="closeModal()">
+                    <mat-icon>close</mat-icon> Close
+                </button>
+            </div>
+            <p>Already have an account? <a routerLink="/login">Sign in</a></p>
         </form>
     </div>
 </div>

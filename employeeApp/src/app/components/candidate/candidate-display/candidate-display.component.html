@@ -1,0 +1,24 @@
+<div class="container">
+    <mat-card class="user-card">
+      <mat-card-title>מידע על המשתמש</mat-card-title>
+      <mat-card-content>
+        <p><strong>שם:</strong> {{ user.fullName }}</p>
+        <p><strong>אימייל:</strong> {{ user.email }}</p>
+        <p><strong>טלפון:</strong> {{ user.phone }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <div class="resume-cards">
+        <mat-card class="resume-card">
+          <!-- <mat-card-title>קובץ מספר {{ resume.Id }}</mat-card-title> -->
+          <mat-card-content>
+            <!-- <p><strong>מפתח קובץ:</strong> {{ resume.FileKey }}</p> -->
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="downloadFile(candidate.FileKey)">
+              download
+            </button>
+          </mat-card-actions>
+        </mat-card>
+    </div>
+  </div>

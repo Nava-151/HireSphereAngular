@@ -19,8 +19,6 @@ import { AuthenticationService } from '../../../services/authentication.service'
   styleUrls: ['./register-modal.component.css']
 })
 export class RegisterModalComponent {
-  @Input() isVisible = false;
-  // dialogRef: MatDialogRef<RegisterModalComponent>
 
   user: User = new User( '', '', '','', 0);
 
@@ -33,7 +31,10 @@ export class RegisterModalComponent {
   constructor(
     private authenticationService: AuthenticationService,
     private route: Router,
-  ) { }
+  ) { 
+    console.log("in register modal");
+    
+  }
 
   credentials = { email: '', password: '' };
   onSubmit() {
@@ -47,7 +48,7 @@ export class RegisterModalComponent {
       localStorage.setItem("id", res.id);
       sessionStorage.setItem("token", res.token);
       this.authenticationService.isLoggedIn = true;
-      // this.route.navigate(['courses']);
+      this.route.navigate(['candidates']);
     });
   }
 

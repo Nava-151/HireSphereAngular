@@ -1,0 +1,28 @@
+
+
+   <mat-toolbar color="primary" class="header">
+    <span class="hiresphere-title">
+        <span class="material-icons">public</span>
+        HireSphere
+    </span>
+    <span class="spacer"></span>
+    <button mat-button>Home</button>
+    <button mat-button>Gallery</button>
+    <button mat-button>About</button>
+    <button mat-button color="accent">Personal Area</button>
+  </mat-toolbar>
+  
+  <div class="page-container">
+    <div class="image-container">
+      <mat-card class="full-width-card">
+        <div class="image-overlay">
+          <img mat-card-image [src]="images[currentIndex]" alt="Rotating Image" class="full-width-image">
+        </div>
+      </mat-card>
+    </div>
+    
+    <button mat-raised-button color="accent" class="start-button" (click)="navigateToRegister()">
+      Let's Start
+    </button>
+  </div>
+  

@@ -1,0 +1,104 @@
+
+   /* General styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevents horizontal scroll */
+    width: 100%;
+    height: 100%;
+  }
+  .start-button {
+    color: black !important;
+    font-size: 10px;
+    position: absolute; /* Position relative to .image-container */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Perfect centering */
+    font-size: 1.5em;
+    border-radius: 5px;
+    background: linear-gradient(145deg, #00eaff, #00ff85);
+    color: black;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 255, 133, 0.8);
+    padding: 10px 20%;
+    transition: all 0.3s ease-in-out;
+  }
+  /* Toolbar */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5em;
+    padding: 10px;
+  }
+  
+  /* Spacer for alignment */
+  .spacer {
+    flex: 1;
+  }
+  
+  /* Main container */
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #1a1a1a;
+    color: white;
+    /* padding-top: 50px; */
+  }
+  .hiresphere-title {
+    background: linear-gradient(145deg, #00eaff, #00ff85);
+    color: black;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 255, 133, 0.8);
+    padding: 10px 20px;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.5em; /* Adjust size */
+    display: inline-block; /* Ensures proper styling */
+  }
+  
+  /* Image container */
+  .image-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  /* Full-width card */
+  .full-width-card {
+    width: 100%;
+    height: 100%;
+    box-shadow: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Image adjustments */
+  .full-width-image {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* Ensures full coverage without distortion */
+    display: block;
+  }
+  .material-icons {
+    margin-right: 8px;
+}
+  
+.image-overlay::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* שכבת אטימות שחורה */
+  }
+  

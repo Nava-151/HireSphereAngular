@@ -1,14 +1,62 @@
 
-.register-modal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-  }
-  
+mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.mat-form-field-outline {
+    border-color: #00eaff !important;
+}
+
+.mat-form-field-label {
+    color: #00eaff !important;
+}
+
+.mat-input-element {
+    color: white !important;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.turquoise-button {
+    background: linear-gradient(145deg, #00eaff, #00ff85);
+    color: black;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 255, 133, 0.8);
+    padding: 10px 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.turquoise-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 255, 133, 1);
+}
+
+
+
+a:hover {
+    text-shadow: 0 0 10px #00ff85;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+
+
+
   .register-modal.show {
     display: block;
   }
@@ -26,7 +74,6 @@
   
   
   .register-modal {
-    display: none;
     position: fixed;
     top: 50%;
     left: 50%;

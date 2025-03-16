@@ -26,7 +26,6 @@ import { AuthenticationService } from '../../../services/authentication.service'
   styleUrls: ['./login-modal.component.css']
 })
 export class LoginModalComponent {
-  @Input() isVisible = false;
 private dailog=inject(MatDialog)
   loginForm = new FormGroup({
     email: new FormControl(''),
@@ -45,7 +44,8 @@ private dailog=inject(MatDialog)
       // sessionStorage.setItem("token", res.token);
       localStorage.setItem("id", res.userId);
       this.auhenticationService.isLoggedIn = true;
-      // this.router.navigate(['courses']);
+
+      this.router.navigate(['candidates']);
     }, error => {
       console.log(error);
     }
