@@ -1,0 +1,39 @@
+@keyframes suddenRound {
+    0% { border-radius: 10px; }
+    100% { border-radius: 30px; }
+}
+
+.stories-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px; /* Increased spacing between cards */
+    margin-top: 30px;
+    padding: 20px;
+}
+
+.story-card {
+    flex: 1;
+    background-color: white;
+    color: black;
+    padding: 20px;
+    border: 3px solid rgba(0, 255, 204, 0.8); /* Cool glowing border */
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s, border 0.3s, border-radius 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.story-card:hover {
+    transform: scale(1.05);
+    background-color: black;
+    color: white;
+    border: 3px solid rgba(0, 255, 204, 1); /* Stronger border on hover */
+    animation: suddenRound 0.2s forwards;
+}
+
+/* Gradient effect for name (h3) on hover */
+.story-card:hover h3 {
+    background: linear-gradient(90deg, #00ffcc, #00aaff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}

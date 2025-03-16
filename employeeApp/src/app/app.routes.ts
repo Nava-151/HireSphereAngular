@@ -9,5 +9,5 @@ export const routes: Routes = [
     { path: 'login', component: LoginModalComponent },
     { path: 'register', component: RegisterModalComponent },
     { path: 'candidates', component: FilterParamsComponent },
-
 ];
+

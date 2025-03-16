@@ -5,9 +5,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { Router } from '@angular/router';
+import { SuccessStoriesComponent } from "../success-stories/success-stories.component";
 @Component({
   selector: 'app-home-page',
-imports: [CommonModule, MatCardModule, MatButtonModule, MatToolbarModule,MatTabsModule],
+imports: [CommonModule, MatCardModule, MatButtonModule, MatToolbarModule, MatTabsModule, SuccessStoriesComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })

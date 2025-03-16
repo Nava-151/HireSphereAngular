@@ -44,7 +44,7 @@ body, html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 80vh;
     background-color: #1a1a1a;
     color: white;
     /* padding-top: 50px; */
@@ -83,8 +83,11 @@ body, html {
   
   /* Image adjustments */
   .full-width-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
     object-fit: cover; /* Ensures full coverage without distortion */
     display: block;
   }
@@ -98,7 +101,7 @@ body, html {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 80vh;
     background: rgba(0, 0, 0, 0.8); /* שכבת אטימות שחורה */
   }
   
