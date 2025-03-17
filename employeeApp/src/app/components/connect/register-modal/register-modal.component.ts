@@ -45,7 +45,6 @@ export class RegisterModalComponent {
     this.user.phone=this.registerForm.value.phone;
     this.authenticationService.register(this.user).subscribe(res => {
       console.log(res)
-      localStorage.setItem("id", res.id);
       sessionStorage.setItem("token", res.token);
       this.authenticationService.isLoggedIn = true;
       this.route.navigate(['candidates']);

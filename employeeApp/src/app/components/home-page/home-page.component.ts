@@ -15,8 +15,6 @@ imports: [CommonModule, MatCardModule, MatButtonModule, MatToolbarModule, MatTab
 export class HomePageComponent {
   constructor(private router: Router){}
 navigateToRegister() {
-  console.log("in navigate");
-  
   this.router.navigate(['/register']);}
 
   images = [
