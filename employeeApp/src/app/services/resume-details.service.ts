@@ -10,7 +10,7 @@ import { Filter } from '../models/filter';
 })
 export class ResumeDetailsService {
 
-  private apiUrl = 'https://localhost:5071/api/';
+  private apiUrl = 'http://localhost:5071';
 
   private analysisResultsSubject = new BehaviorSubject<any[]>([]);
   analysisResults$ = this.analysisResultsSubject.asObservable(); // Observable שהקומפוננטות יאזינו לו
