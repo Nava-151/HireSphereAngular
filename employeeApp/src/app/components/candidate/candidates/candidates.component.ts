@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ResumeDetailsService } from '../../../services/resume-details.service';
 import { UserResumeDetails } from '../../../models/UserResumeDetails';
 import { CandidateDisplayComponent } from '../candidate-display/candidate-display.component';
@@ -10,11 +10,22 @@ import { CandidateDisplayComponent } from '../candidate-display/candidate-displa
   styleUrl: './candidates.component.css'
 })
 export class CandidatesComponent {
-  candidatesList:UserResumeDetails[]=[];
-constructor(private resumeDetailsService: ResumeDetailsService) { }
+  candidatesList: UserResumeDetails[] = [];
+  constructor(private resumeDetailsService: ResumeDetailsService) {
+    this.resumeDetailsService.fetchAnalysisResults().subscribe(data => {
+      this.candidatesList = data
+    })
+  }
+  // ngOnInit(): void {
+  //   this.resumeDetailsService.fetchAnalysisResults().subscribe(data => {this.candidatesList = data
+  //     console.log("Data received:", data);
+  //     console.log("cand[0]");
+  //     console.log(this.candidatesList[0]);
+  //   })
+  // }
 
 
-getall=()=>{
-  this.resumeDetailsService.analysisResults$.subscribe(data=>this.candidatesList=data);
+
+
 }
-}
+

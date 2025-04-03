@@ -12,9 +12,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { filter } from 'rxjs';
 import { Filter } from '../../../models/filter';
 import { ResumeDetailsService } from '../../../services/resume-details.service';
+import { CandidatesComponent } from "../candidates/candidates.component";
 @Component({
   selector: 'app-filter-params',
-  imports: [ 
+  imports: [
     FormsModule,
     MatSelectModule,
     MatButtonModule,
@@ -23,8 +24,9 @@ import { ResumeDetailsService } from '../../../services/resume-details.service';
     MatInputModule,
     MatRadioModule,
     MatMenuModule,
-    MatCheckboxModule
-  ],
+    MatCheckboxModule,
+    CandidatesComponent
+],
   templateUrl: './filter-params.component.html',
   styleUrl: './filter-params.component.css'
 })

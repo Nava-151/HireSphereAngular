@@ -1,0 +1,94 @@
+/* Container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* Card Styles */
+  .card {
+    background: white;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1 1 calc(50% - 40px);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    color: #1a1a1a;
+    max-width: calc(50% - 40px);
+    transition: border 0.5s ease-in-out;
+  }
+  
+  /* Hover Effect */
+  .card:hover {
+    border-left: 2px solid #39ff14;
+    border-right: 2px solid #00d4ff;
+    transition: border 0.2s ease-in-out;
+  }
+  
+  .card:hover::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    /* border-top: 2px solid #39ff14; */
+    /* border-bottom: 2px solid #00d4ff; */
+    animation: borderExpand 0.3s ease-in-out 0.2s forwards;
+  }
+  
+  /* Keyframe animation for delayed top/bottom border */
+  @keyframes borderExpand {
+    from {
+      border-top: 0 solid transparent;
+      border-bottom: 0 solid transparent;
+    }
+    to {
+      border-top-width: 2px;
+      border-bottom-width: 2px;
+    }
+  }
+  
+  /* Card Title */
+  .card h2 {
+    margin-top: 0;
+    color: #1a1a1a;
+  }
+  
+  /* Button Styles */
+  .btn mat-icon {
+    font-size: 24px; /* ודא שהאייקון בגודל מתאים */
+    color: black; /* צבע האייקון */
+    display: inline-block;
+  }
+  
+  .btn {
+    background: linear-gradient(90deg, #00ffa3, #00e1ff);
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    padding: 12px 24px;
+    transition: box-shadow 0.3s ease-in-out, transform 0.2s ease;
+    box-shadow: 0px 4px 10px rgba(0, 255, 163, 0.5);
+  }
+  
+  .btn:hover {
+    box-shadow: 0px 4px 20px rgba(0, 255, 163, 0.8);
+    transform: translateY(-2px);
+  }
+  
+  
+  /* Responsive: single column for smaller screens */
+  @media (max-width: 768px) {
+    .card {
+      flex: 1 1 100%;
+      max-width: 100%;
+    }
+  }
+  

@@ -16,7 +16,6 @@ export class LoginComponent {
   isLoginModalVisible :boolean= false;
   isRegisterModalVisible : boolean= false;
   openLoginModal() {
-    console.log("in login modal");
     this.isLoginModalVisible = true;
   }
   openRegisterModal() {

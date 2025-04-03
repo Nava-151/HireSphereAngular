@@ -1,3 +1,8 @@
-@for( candiate of candidatesList;track candiate.CandidateId){
-   <app-candidate-display [candidate]="candiate"></app-candidate-display>
-}
+@if (candidatesList && candidatesList.length > 0) {
+
+   @for (c of candidatesList; track c) {
+     <app-candidate-display [candidate]="c"></app-candidate-display>
+   }
+ } @else {
+   <p>Loading candidates...</p>
+ }

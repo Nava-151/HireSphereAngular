@@ -16,14 +16,13 @@ export class ResumeDetailsService {
   analysisResults$ = this.analysisResultsSubject.asObservable(); // Observable שהקומפוננטות יאזינו לו
 
   constructor(private http: HttpClient) {
+    console.log("in resume details service");
     this.fetchAnalysisResults(); // קריאה ראשונית
   }
 
-  public fetchAnalysisResults() {
-    this.http.get<UserResumeDetails[]>(`${this.apiUrl}/data`)
-      .subscribe(data => {
-        this.analysisResultsSubject.next(data)
-      });
+   fetchAnalysisResults():Observable<UserResumeDetails[]> {
+    console.log("in fetchAnalysisResults");
+    return this.http.get<UserResumeDetails[]>(`${this.apiUrl}/data`)
   }
 
   sendForFilter=(filters:Filter)=>{
@@ -31,21 +30,17 @@ export class ResumeDetailsService {
   }
 
 
-
-  getUser = (userId: number): User => {
-    let user: User = new User('', '', '', '', 0);
-    this.http.get<User>(`${this.apiUrl}/user/${userId}`).subscribe(data => user = data);
-    return user;
+  getUser(userId: number): Observable<User> {
+    console.log("in get user");
+    return this.http.get<User>(`${this.apiUrl}/users/${userId}`);
   }
-  getResponse = (idResponse: number): UserResumeDetails => {
-    let resp: UserResumeDetails = new UserResumeDetails(0,0,'', 0);
-    this.http.get<UserResumeDetails>(`${this.apiUrl}/aiResponse/${idResponse}`).subscribe(data => resp = data);
-    return resp;
+  
+  getResponse(idResponse: number): Observable<UserResumeDetails> {
+    return this.http.get<UserResumeDetails>(`${this.apiUrl}/aiResponse/${idResponse}`);
   }
-
+  
   getPresignedUrl(fileKey: string): Observable<{ url: string }> {
-    return this.http.get<{ url: string }>(`${this.apiUrl}/get-presigned-url?fileKey=${fileKey}`);
+    return this.http.get<{ url: string }>(`${this.apiUrl}/files/dowload/?fileKey=${fileKey}`);
   }
-
 
 }

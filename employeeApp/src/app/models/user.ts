@@ -7,11 +7,12 @@ export class User {
         public passwordHash: string,   
         public role: userRole,
         public id?: number,
+        
 
     ) {}
 }
 
 export enum userRole{
-    Employer=0,
-    Candidate=1
+    Candidate=0,
+    Employer=1
 }

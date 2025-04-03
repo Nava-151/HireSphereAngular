@@ -1,9 +1,9 @@
 export class UserResumeDetails{
     constructor(
-        public  Id:number ,
-        public  CandidateId:number ,
-        public  FileKey: string, // מפתח הקובץ ב-S3
-        public  IdResponse:number
+        public  id:number ,
+        public  candidateId:number ,
+        public  fileKey: string, // מפתח הקובץ ב-S3
+        public  idResponse:number
     ){
     }
 }

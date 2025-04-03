@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthenticationService } from '../../../services/authentication.service';
+import { User, userRole } from '../../../models/user';
 @Component({
   selector: 'app-login-modal',
   templateUrl: './login-modal.component.html',
@@ -32,7 +33,7 @@ private dailog=inject(MatDialog)
     password: new FormControl('')
   });
 
-  credentials = { email: '', passwordHash: '' };
+  credentials = { email: '', passwordHash: '',role:userRole.Employer };
   router = inject(Router);
   // dialogRef: any;
   constructor(private auhenticationService: AuthenticationService) { }
@@ -43,8 +44,7 @@ private dailog=inject(MatDialog)
       console.log(res)
       localStorage.setItem("id", res.userId);
       localStorage.setItem("token", res.token);
-      this.auhenticationService.isLoggedIn = true;
-
+      // this.auhenticationService.isLoggedIn = true;
       this.router.navigate(['candidates']);
     }, error => {
       console.log(error);
