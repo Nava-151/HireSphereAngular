@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user';
@@ -25,9 +25,25 @@ export class ResumeDetailsService {
     return this.http.get<UserResumeDetails[]>(`${this.apiUrl}/data`)
   }
 
-  sendForFilter=(filters:Filter)=>{
-    return this.http.post<Filter>(`${this.apiUrl}/data/filter`,filters);
+  // sendForFilter=(filters:Filter)=>{
+    // console.log("in sendForFilter");
+    //trat it cant gr
+// return this.http.get<UserResumeDetails[]>(`${this.apiUrl}/data/filter`,{params: filters});
+  // }
+  sendForFilter(filters: Filter) {
+    console.log("in sendForFilter");
+  
+    // Construct the query string from the filters
+    const params = new HttpParams()
+      .set('experience', filters.Experience?.toString())
+      .set('languages', filters.Languages||'')
+      .set('englishLevel', filters.EnglishLevel||'')
+      .set('education', filters.Education||'');
+  
+    // Send a GET request with query parameters
+    return this.http.get<any>(`${this.apiUrl}/data/filter`, { params });
   }
+  
 
 
   getUser(userId: number): Observable<User> {
@@ -39,8 +55,11 @@ export class ResumeDetailsService {
     return this.http.get<UserResumeDetails>(`${this.apiUrl}/aiResponse/${idResponse}`);
   }
   
-  getPresignedUrl(fileKey: string): Observable<{ url: string }> {
-    return this.http.get<{ url: string }>(`${this.apiUrl}/files/dowload/?fileKey=${fileKey}`);
+  
+  downloadFile(fileKey: string): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/files/download/?fileName=${fileKey}`, {
+      responseType: 'blob'
+    });
   }
 
 }

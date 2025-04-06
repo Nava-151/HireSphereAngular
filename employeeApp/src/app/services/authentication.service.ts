@@ -22,18 +22,22 @@ export class AuthenticationService {
             tap((registered) => {
                 this.currentUser = registered.user;
                 localStorage.setItem("token",registered.token)
+                localStorage.setItem("id", registered.id+""); 
+
             })
         );
     }
 
     // **התחברות והתחלת סשן**
     login(credentials: { email: string; passwordHash: string }): Observable<any> {
-        const res={email:credentials.email,passwordHash:credentials.passwordHash,role:userRole.Employer};
-        return this.http.post<{ token: string; }>(`${this.apiUrl}/login`, res).pipe(
+        const res={Email:credentials.email,PasswordHash:credentials.passwordHash,Role:1};
+        console.log(res);
+        
+        return this.http.post<{ token: string;id:number }>(`${this.apiUrl}/login`, res).pipe(
             tap((response) => {
                 console.log("in login");
-                
                 localStorage.setItem("token", response.token); 
+                localStorage.setItem("id", response.id+""); 
                 this.isLoggedIn = true;
             })
         );
@@ -51,8 +55,8 @@ export class AuthenticationService {
         return !!localStorage.getItem("token");
     }
 
-    // **קבלת טוקן מה-Storage**
     getToken(): string | null {
         return localStorage.getItem("token");
     }
+    
 }
