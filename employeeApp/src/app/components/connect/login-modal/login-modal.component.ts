@@ -42,9 +42,9 @@ private dailog=inject(MatDialog)
     this.loginForm.value?.password ? this.credentials.passwordHash = this.loginForm.value.password : "";
     this.auhenticationService.login(this.credentials).subscribe(res => {
       console.log(res)
-      localStorage.setItem("id", res.userId);
-      localStorage.setItem("token", res.token);
-      // this.auhenticationService.isLoggedIn = true;
+      // localStorage.setItem("id", res.userId);
+      // localStorage.setItem("token", res.token);
+      this.auhenticationService.isLoggedIn = true;
       this.router.navigate(['candidates']);
     }, error => {
       console.log(error);

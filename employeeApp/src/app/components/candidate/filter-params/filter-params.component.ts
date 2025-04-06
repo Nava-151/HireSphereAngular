@@ -6,15 +6,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatMenuItem, MatMenuModule } from '@angular/material/menu';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';4
+import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { filter } from 'rxjs';
 import { Filter } from '../../../models/filter';
 import { ResumeDetailsService } from '../../../services/resume-details.service';
 import { CandidatesComponent } from "../candidates/candidates.component";
+
 @Component({
   selector: 'app-filter-params',
+  standalone: true,
   imports: [
     FormsModule,
     MatSelectModule,
@@ -26,62 +26,66 @@ import { CandidatesComponent } from "../candidates/candidates.component";
     MatMenuModule,
     MatCheckboxModule,
     CandidatesComponent
-],
+  ],
   templateUrl: './filter-params.component.html',
   styleUrl: './filter-params.component.css'
 })
 export class FilterParamsComponent {
 
-  constructor(private resumeDetails:ResumeDetailsService
-  
-  ){}
-  paramsList: any[] = [
-    { id: 0, filter: "Experience", icon:"work"},
-    { id: 2, filter: "Languages" ,icon:"language"},
-    { id: 3, filter: "EnglishLevel", icon:"translate"},
-    { id: 4, filter: "Education", icon:"school"},
-  ];
-  selectedFilter: string | null = null;
-  experienceYears: number  = 0;
-  selectedLanguages: string[] = [];
-  englishLevel: string  = '';
-  educationLevel: string  = ' ';
+  constructor(private resumeDetails: ResumeDetailsService) {}
 
-  filter: string | null = null;
-  paramForFilter:Filter=new Filter(0,"","","");
-  langStr:string="";
+  paramsList: any[] = [
+    { id: 0, filter: "Experience", icon: "work" },
+    { id: 2, filter: "Languages", icon: "language" },
+    { id: 3, filter: "EnglishLevel", icon: "translate" },
+    { id: 4, filter: "Education", icon: "school" },
+  ];
+
+  selectedFilter: string | null = null;
+
+  // Form values
+  experienceYears: number = 0;
+  selectedLanguages: string[] = [];
+  englishLevel: string = '';
+  educationLevel: string = '';
+
+  // Filter object to send
+  paramForFilter: Filter = new Filter(4, "", "", "");
+
   programmingLanguages = [
     "JavaScript", "TypeScript", "Python", "Java", "C#", "C++", "Ruby",
-    "Swift", "Kotlin", "Go", "PHP", "Rust", "Dart","React","Angular","View","Node","SQL","Mongo","HTML","CSS","C","Cobol","Asembler"
-  ];
-  
-  
-setEducation(education: string) {
-  this.educationLevel=education
-}
+    "Swift", "Kotlin", "Go", "PHP", "Rust", "Dart", "React", "Angular", "View",
+    "Node", "SQL", "Mongo", "HTML", "CSS", "C", "Cobol", "Asembler"
+/*************  ✨ Codeium Command ⭐  *************/
+/**
+
+/******  7107f75d-8dc2-47c9-abb2-29d894cc7968  *******/  ];
 
   toggleFilter(filter: any) {
-    console.log("in toggle");
-    
     this.selectedFilter = filter.filter;
-    if(filter == "Experience"){
-      this.paramForFilter.Experience=this.experienceYears;
-    }
-    else if(filter == "Languages"){
-      this.selectedLanguages.forEach(s=>this.langStr+=s+" ");
-      this.paramForFilter.Languages=this.langStr;
-    }
-    else if(filter == "EnglishLevel"){
-      this.paramForFilter.EnglishLevel=this.englishLevel;
-    }
-    else{
-      this.paramForFilter.Education=this.educationLevel;
+  }
+
+  startFilter() {
+    // Clear previous filter data
+    this.paramForFilter = new Filter(4, "", "", "");
+
+    // Fill only selected filter
+    switch (this.selectedFilter) {
+      case "Experience":
+        this.paramForFilter.Experience = this.experienceYears;
+        break;
+      case "Languages":
+        this.paramForFilter.Languages = this.selectedLanguages.join(" ");
+        break;
+      case "EnglishLevel":
+        this.paramForFilter.EnglishLevel = this.englishLevel;
+        break;
+      case "Education":
+        this.paramForFilter.Education = this.educationLevel;
+        break;
     }
 
-this.paramForFilter  }
-  startFilter() {
-    console.log(this.experienceYears);
-    console.log(this.paramForFilter);
+    console.log("Final Filter Parameters:", this.paramForFilter);
     this.resumeDetails.sendForFilter(this.paramForFilter);
   }
 }

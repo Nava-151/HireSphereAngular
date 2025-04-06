@@ -14,20 +14,18 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './candidate-display.component.css'
 })
 export class CandidateDisplayComponent implements OnInit {
-/**
- *
- */
 
+download(fileKey: string) {
+  this.userResumeService.downloadFile(fileKey).subscribe(blob => {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileKey;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  });
+}
 
-  downloadFile(fileKey: string) {
-    console.log("in sownload");
-    this.userResumeService.getPresignedUrl(fileKey).subscribe(
-      data=>console.log(data)
-      
-    )
-    
-    
-  }
   @Input() candidate!: UserResumeDetails;
   user!: User
   AnalysisReport!: UserResumeDetails;

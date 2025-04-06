@@ -1,0 +1,36 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+    <h2>User Information</h2>
+    <div>
+        <label for="fullName"><i class="fas fa-user icon"></i> Full Name:</label>
+        <input id="fullName" formControlName="fullName" type="text" />
+        @if (userForm.get('fullName')?.invalid && userForm.get('fullName')?.touched) {
+            <div>Full Name is required.</div>
+        }
+    </div>
+
+    <div>
+        <label for="email"><i class="fas fa-envelope icon"></i> Email:</label>
+        <input id="email" formControlName="email" type="email" />
+        @if (userForm.get('email')?.invalid && userForm.get('email')?.touched) {
+            <div>Enter a valid email.</div>
+        }
+    </div>
+
+    <div>
+        <label for="phone"><i class="fas fa-phone icon"></i> Phone:</label>
+        <input id="phone" formControlName="phone" type="text" />
+    </div>
+
+    <div>
+        <label for="password"><i class="fas fa-lock icon"></i> New Password:</label>
+        <input id="password" formControlName="password" type="password" />
+        @if (userForm.get('password')?.invalid && userForm.get('password')?.touched) {
+            <div>Password is required if updating.</div>
+        }
+    </div>
+
+    <button type="submit" [disabled]="userForm.invalid">Update</button>
+</form>

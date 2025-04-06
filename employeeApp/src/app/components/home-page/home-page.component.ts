@@ -8,14 +8,20 @@ import { Router } from '@angular/router';
 import { SuccessStoriesComponent } from "../success-stories/success-stories.component";
 @Component({
   selector: 'app-home-page',
-imports: [CommonModule, MatCardModule, MatButtonModule, MatToolbarModule, MatTabsModule, SuccessStoriesComponent],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatToolbarModule, MatTabsModule, SuccessStoriesComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent {
-  constructor(private router: Router){}
-navigateToRegister() {
-  this.router.navigate(['/register']);}
+  constructor(private router: Router) { }
+
+  navigateToUpdate() {
+    this.router.navigate(['/update']);
+  }
+
+  navigateToRegister() {
+    this.router.navigate(['/register']);
+  }
 
   images = [
     "1.png",

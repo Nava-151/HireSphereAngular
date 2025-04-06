@@ -35,10 +35,10 @@ export class ResumeDetailsService {
   
     // Construct the query string from the filters
     const params = new HttpParams()
-      .set('experience', filters.Experience?.toString())
-      .set('languages', filters.Languages||'')
-      .set('englishLevel', filters.EnglishLevel||'')
-      .set('education', filters.Education||'');
+      // .set('experience', filters.Experience?.toString())
+      // .set('languages', filters.Languages||'')
+      // .set('englishLevel', filters.EnglishLevel||'')
+      // .set('education', filters.Education||);
   
     // Send a GET request with query parameters
     return this.http.get<any>(`${this.apiUrl}/data/filter`, { params });
