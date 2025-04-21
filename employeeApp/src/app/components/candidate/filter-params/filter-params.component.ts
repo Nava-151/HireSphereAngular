@@ -25,7 +25,6 @@ import { CandidatesComponent } from "../candidates/candidates.component";
     MatRadioModule,
     MatMenuModule,
     MatCheckboxModule,
-    CandidatesComponent
   ],
   templateUrl: './filter-params.component.html',
   styleUrl: './filter-params.component.css'
@@ -43,49 +42,43 @@ export class FilterParamsComponent {
 
   selectedFilter: string | null = null;
 
-  // Form values
   experienceYears: number = 0;
   selectedLanguages: string[] = [];
   englishLevel: string = '';
   educationLevel: string = '';
 
-  // Filter object to send
   paramForFilter: Filter = new Filter(4, "", "", "");
 
   programmingLanguages = [
     "JavaScript", "TypeScript", "Python", "Java", "C#", "C++", "Ruby",
     "Swift", "Kotlin", "Go", "PHP", "Rust", "Dart", "React", "Angular", "View",
     "Node", "SQL", "Mongo", "HTML", "CSS", "C", "Cobol", "Asembler"
-/*************  ✨ Codeium Command ⭐  *************/
-/**
-
-/******  7107f75d-8dc2-47c9-abb2-29d894cc7968  *******/  ];
+ ];
 
   toggleFilter(filter: any) {
     this.selectedFilter = filter.filter;
   }
 
   startFilter() {
-    // Clear previous filter data
     this.paramForFilter = new Filter(4, "", "", "");
-
-    // Fill only selected filter
     switch (this.selectedFilter) {
       case "Experience":
-        this.paramForFilter.Experience = this.experienceYears;
+        this.paramForFilter.experience = this.experienceYears;
         break;
       case "Languages":
-        this.paramForFilter.Languages = this.selectedLanguages.join(" ");
+        this.paramForFilter.languages = this.selectedLanguages.join(" ");
         break;
       case "EnglishLevel":
-        this.paramForFilter.EnglishLevel = this.englishLevel;
+        this.paramForFilter.englishLevel = this.englishLevel;
         break;
       case "Education":
-        this.paramForFilter.Education = this.educationLevel;
+        this.paramForFilter.education = this.educationLevel;
         break;
     }
-
     console.log("Final Filter Parameters:", this.paramForFilter);
-    this.resumeDetails.sendForFilter(this.paramForFilter);
+    this.resumeDetails.sendForFilter(this.paramForFilter).subscribe(data => {
+      // console.log(data);
+    });
+    
   }
 }

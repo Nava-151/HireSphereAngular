@@ -1,9 +1,9 @@
 export class Filter {
     constructor(
-        public Experience?: number,
-        public Education?: string,
-        public Languages?: string,
-        public EnglishLevel?: string
+        public experience?: number,
+        public education?: string,
+        public languages?: string,
+        public englishLevel?: string
     ) {
 
     }

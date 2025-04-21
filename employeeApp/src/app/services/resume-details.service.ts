@@ -20,42 +20,30 @@ export class ResumeDetailsService {
     this.fetchAnalysisResults(); // קריאה ראשונית
   }
 
-   fetchAnalysisResults():Observable<UserResumeDetails[]> {
+  fetchAnalysisResults(): Observable<UserResumeDetails[]> {
     console.log("in fetchAnalysisResults");
     return this.http.get<UserResumeDetails[]>(`${this.apiUrl}/data`)
   }
 
-  // sendForFilter=(filters:Filter)=>{
-    // console.log("in sendForFilter");
-    //trat it cant gr
-// return this.http.get<UserResumeDetails[]>(`${this.apiUrl}/data/filter`,{params: filters});
-  // }
+
   sendForFilter(filters: Filter) {
     console.log("in sendForFilter");
-  
-    // Construct the query string from the filters
-    const params = new HttpParams()
-      // .set('experience', filters.Experience?.toString())
-      // .set('languages', filters.Languages||'')
-      // .set('englishLevel', filters.EnglishLevel||'')
-      // .set('education', filters.Education||);
-  
-    // Send a GET request with query parameters
-    return this.http.get<any>(`${this.apiUrl}/data/filter`, { params });
+    console.log(`${this.apiUrl}/data/filter`);
+    return this.http.post<any>(`${this.apiUrl}/data/filter`, filters);
   }
-  
+
 
 
   getUser(userId: number): Observable<User> {
     console.log("in get user");
     return this.http.get<User>(`${this.apiUrl}/users/${userId}`);
   }
-  
+
   getResponse(idResponse: number): Observable<UserResumeDetails> {
     return this.http.get<UserResumeDetails>(`${this.apiUrl}/aiResponse/${idResponse}`);
   }
-  
-  
+
+
   downloadFile(fileKey: string): Observable<Blob> {
     return this.http.get(`${this.apiUrl}/files/download/?fileName=${fileKey}`, {
       responseType: 'blob'
