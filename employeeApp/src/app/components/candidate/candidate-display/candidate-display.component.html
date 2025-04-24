@@ -11,10 +11,17 @@
   </div>
 
   <div class="card resume-card">
-
-  <button mat-raised-button class="btn" (click)="download(candidate.fileKey)">
-      <mat-icon>download</mat-icon>
-    </button>
+    <mat-card-actions>
+      <button mat-raised-button  (click)="download(candidate.fileKey)">
+        <mat-icon>download</mat-icon>
+        download
+      </button>
+      <button mat-raised-button   (click)="watch(candidate.candidateId)">
+        <mat-icon>visibility</mat-icon>
+        view the file
+      </button>
+    </mat-card-actions>
   </div>
+
 </div>
 }

@@ -4,13 +4,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user';
 import { UserResumeDetails } from '../models/UserResumeDetails';
 import { Filter } from '../models/filter';
+import { environment } from './enviroment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResumeDetailsService {
 
-  private apiUrl = 'http://localhost:5071';
+  private apiUrl = environment.apiUrl;
 
   private analysisResultsSubject = new BehaviorSubject<any[]>([]);
   analysisResults$ = this.analysisResultsSubject.asObservable(); // Observable שהקומפוננטות יאזינו לו
@@ -49,5 +50,13 @@ export class ResumeDetailsService {
       responseType: 'blob'
     });
   }
+
+  viewFile(ownerId:number): Observable<string> {
+    const params = new HttpParams().set('ownerId', ownerId);
+    console.log("in view file");
+    
+    return this.http.get<string>(`${this.apiUrl}/files/view`, { params });
+  }
+  
 
 }

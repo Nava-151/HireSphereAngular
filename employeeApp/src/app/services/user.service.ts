@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserUpdateDetails } from '../models/UserUpdateDetails';
+import { environment } from './enviroment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { UserUpdateDetails } from '../models/UserUpdateDetails';
 export class UserService {
 
 
-  private apiUrl = 'http://localhost:5071/users'; // Your API endpoint
+  private apiUrl = `${environment.apiUrl}/users`; 
 
   constructor(private http: HttpClient) {}
 

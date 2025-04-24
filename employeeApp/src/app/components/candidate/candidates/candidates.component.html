@@ -22,6 +22,12 @@
       </div>
     }
 
+    @if(selectedFilter === 'Mark') {
+      <div>
+        <label>mark more than:</label>
+        <input matInput type="number" [(ngModel)]="testMark" placeholder="Enter the minimum mark" />
+      </div>
+    }
     @if (selectedFilter === 'Languages') {
       <div>
         <label>Choose Programming Languages:</label>

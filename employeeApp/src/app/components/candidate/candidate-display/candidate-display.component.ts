@@ -14,23 +14,30 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './candidate-display.component.css'
 })
 export class CandidateDisplayComponent implements OnInit {
-
-download(fileKey: string) {
-  this.userResumeService.downloadFile(fileKey).subscribe(blob => {
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = fileKey;
-    a.click();
-    window.URL.revokeObjectURL(url);
-  });
-}
+  watch = (id: number) => {
+    console.log("in watch compo");
+    this.userResumeService.viewFile(id).subscribe(response => {
+      console.log(response);
+      if (response ) {
+        window.open(response, '_blank');
+      }
+    });
+  }
+  download(fileKey: string) {
+    this.userResumeService.downloadFile(fileKey).subscribe(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileKey;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    });
+  }
 
   @Input() candidate!: UserResumeDetails;
   user!: User
   AnalysisReport!: UserResumeDetails;
-  url: string = 'http://localhost:5071';
-  constructor(private userResumeService: ResumeDetailsService, private http: HttpClient,private cdr: ChangeDetectorRef) { }
+  constructor(private userResumeService: ResumeDetailsService, private http: HttpClient, private cdr: ChangeDetectorRef) { }
   ngOnInit() {
     console.log('Candidate received:', this.candidate);
 

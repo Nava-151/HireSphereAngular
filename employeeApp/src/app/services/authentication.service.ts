@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { User, userRole } from '../models/user';
+import { environment } from './enviroment.prod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-    private apiUrl = 'http://localhost:5071/auth';
+    private apiUrl = `${environment.apiUrl}/auth`
     public isLoggedIn: boolean = false;
     public : boolean = false;
     public currentUser: User | null = null;

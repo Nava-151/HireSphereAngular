@@ -16,14 +16,14 @@ import { MatSelectModule } from '@angular/material/select';
 @Component({
   selector: 'app-candidate',
   imports: [CandidateDisplayComponent, FormsModule,
-      MatSelectModule,
-      MatButtonModule,
-      MatIconModule,
-      MatFormFieldModule,
-      MatInputModule,
-      MatRadioModule,
-      MatMenuModule,
-      MatCheckboxModule],
+    MatSelectModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    MatMenuModule,
+    MatCheckboxModule],
   templateUrl: './candidates.component.html',
   styleUrl: './candidates.component.css'
 })
@@ -37,59 +37,65 @@ export class CandidatesComponent {
     })
   }
   paramsList: any[] = [
-      { id: 0, filter: "Experience", icon: "work" },
-      { id: 2, filter: "Languages", icon: "language" },
-      { id: 3, filter: "EnglishLevel", icon: "translate" },
-      { id: 4, filter: "Education", icon: "school" },
-    ];
-     
-    selectedFilter: string | null = null;
-  
-    experienceYears: number = 0;
-    selectedLanguages: string[] = [];
-    englishLevel: string = '';
-    educationLevel: string = '';
-  
-    paramForFilter: Filter = new Filter(4, "", "", "");
-  
-    programmingLanguages = [
-      "JavaScript", "TypeScript", "Python", "Java", "C#", "C++", "Ruby",
-      "Swift", "Kotlin", "Go", "PHP", "Rust", "Dart", "React", "Angular", "View",
-      "Node", "SQL", "Mongo", "HTML", "CSS", "C", "Cobol", "Asembler"
-   ];
-  
-    toggleFilter(filter: any) {
-      this.selectedFilter = filter.filter;
-    }
-   
-   timeoutId: ReturnType<typeof setTimeout> = setTimeout(() => {
+    { id: 0, filter: "Experience", icon: "work" },
+    { id: 2, filter: "Languages", icon: "language" },
+    { id: 3, filter: "EnglishLevel", icon: "translate" },
+    { id: 4, filter: "Education", icon: "school" },
+    {id:5,filter:"Mark",icon:"bookmark"}
+
+  ];
+
+  selectedFilter: string | null = null;
+
+  experienceYears: number = 0;
+  selectedLanguages: string[] = [];
+  englishLevel: string = '';
+  educationLevel: string = '';
+  testMark: number = 0;
+
+  paramForFilter: Filter = new Filter(4, "", "", "");
+
+  programmingLanguages = [
+    "JavaScript", "TypeScript", "Python", "Java", "C#", "C++", "Ruby",
+    "Swift", "Kotlin", "Go", "PHP", "Rust", "Dart", "React", "Angular", "View",
+    "Node", "SQL", "Mongo", "HTML", "CSS", "C", "Cobol", "Asembler"
+  ];
+
+  toggleFilter(filter: any) {
+    this.selectedFilter = filter.filter;
+  }
+
+  timeoutId: ReturnType<typeof setTimeout> = setTimeout(() => {
     // if (this.candidatesList.length === 0) {
-      this.showNoCandidatesMessage = true;
+    this.showNoCandidatesMessage = true;
     // }
-  }, 5000); // 5 seconds
-    startFilter() {
-      this.paramForFilter = new Filter(0, "", "", "");
-      switch (this.selectedFilter) {
-        case "Experience":
-          this.paramForFilter.experience = this.experienceYears;
-          break;
-        case "Languages":
-          this.paramForFilter.languages = this.selectedLanguages.join(" ");
-          break;
-        case "EnglishLevel":
-          this.paramForFilter.englishLevel = this.englishLevel;
-          break;
-        case "Education":
-          this.paramForFilter.education = this.educationLevel;
-          break;
-      }
-      console.log("Final Filter Parameters:", this.paramForFilter);
-      this.resumeDetailsService.sendForFilter(this.paramForFilter).subscribe(data => {
-        console.log(data);
-        this.candidatesList = data;
-      });
-      
+  }, 7000); // 5 seconds
+  startFilter() {
+    this.paramForFilter = new Filter(0, "", "", "",0);
+    switch (this.selectedFilter) {
+      case "Experience":
+        this.paramForFilter.experience = this.experienceYears;
+        break;
+      case "Languages":
+        this.paramForFilter.languages = this.selectedLanguages.join(" ");
+        break;
+      case "EnglishLevel":
+        this.paramForFilter.englishLevel = this.englishLevel;
+        break;
+      case "Education":
+        this.paramForFilter.education = this.educationLevel;
+        break;
+      case "Mark":
+        this.paramForFilter.mark = this.testMark;
+        break;
     }
+    console.log("Final Filter Parameters:", this.paramForFilter);
+    this.resumeDetailsService.sendForFilter(this.paramForFilter).subscribe(data => {
+      console.log(data);
+      this.candidatesList = data;
+    });
+
+  }
 
 }
 
