@@ -12,7 +12,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-
+import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+// import { DeferBlockModule } from '@angular/core';
 @Component({
   selector: 'app-candidate',
   imports: [CandidateDisplayComponent, FormsModule,
@@ -23,25 +26,27 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatRadioModule,
     MatMenuModule,
-    MatCheckboxModule],
+    MatCheckboxModule,
+    CommonModule,
+    MatProgressSpinnerModule],
   templateUrl: './candidates.component.html',
   styleUrl: './candidates.component.css'
 })
 export class CandidatesComponent {
-  candidatesList: UserResumeDetails[] = [];
+  // candidatesList: UserResumeDetails[] = [];
   showNoCandidatesMessage = false;
+  candidatesList$!: Observable<UserResumeDetails[]>; // שימי לב שיש פה Observable
 
   constructor(private resumeDetailsService: ResumeDetailsService) {
-    this.resumeDetailsService.fetchAnalysisResults().subscribe(data => {
-      this.candidatesList = data
-    })
+    this.candidatesList$ = this.resumeDetailsService.analysisResults$;
   }
+
   paramsList: any[] = [
     { id: 0, filter: "Experience", icon: "work" },
     { id: 2, filter: "Languages", icon: "language" },
     { id: 3, filter: "EnglishLevel", icon: "translate" },
     { id: 4, filter: "Education", icon: "school" },
-    {id:5,filter:"Mark",icon:"bookmark"}
+    { id: 5, filter: "Mark", icon: "bookmark" }
 
   ];
 
@@ -66,12 +71,11 @@ export class CandidatesComponent {
   }
 
   timeoutId: ReturnType<typeof setTimeout> = setTimeout(() => {
-    // if (this.candidatesList.length === 0) {
     this.showNoCandidatesMessage = true;
-    // }
-  }, 7000); // 5 seconds
+  }, 7000);
+
   startFilter() {
-    this.paramForFilter = new Filter(0, "", "", "",0);
+    this.paramForFilter = new Filter(0, "", "", "", 0);
     switch (this.selectedFilter) {
       case "Experience":
         this.paramForFilter.experience = this.experienceYears;
@@ -90,9 +94,10 @@ export class CandidatesComponent {
         break;
     }
     console.log("Final Filter Parameters:", this.paramForFilter);
+
     this.resumeDetailsService.sendForFilter(this.paramForFilter).subscribe(data => {
       console.log(data);
-      this.candidatesList = data;
+      this.candidatesList$ = data;
     });
 
   }

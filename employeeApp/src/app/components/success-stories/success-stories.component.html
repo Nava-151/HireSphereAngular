@@ -1,9 +1,9 @@
 <div class="stories-container">
-    @for (story of successStories; track $index) {
-      <div class="story-card">
-        <h3>{{ story.name }}</h3>
-        <h4>{{ story.company }}</h4>
-        <p>{{ story.feedback }}</p>
-      </div>
-    }
-  </div>
+  @for (story of successStories; track $index) {
+    <div class="story-card">
+      <h3>{{ story.name }}</h3>
+      <h4>{{ story.company }}</h4>
+      <p>{{ story.feedback }}</p>
+    </div>
+  }
+</div>

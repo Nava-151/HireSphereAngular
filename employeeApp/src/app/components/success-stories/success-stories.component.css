@@ -5,18 +5,20 @@
 
 .stories-container {
     display: flex;
-    justify-content: space-between;
-    gap: 25px; /* Increased spacing between cards */
+    flex-wrap: wrap; /* חשוב! כדי שהכרטיסים ירדו שורה במסכים קטנים */
+    justify-content: center; /* מרכז את הכרטיסים */
+    gap: 25px;
     margin-top: 30px;
     padding: 20px;
 }
 
 .story-card {
-    flex: 1;
+    flex: 1 1 300px; /* בסיס 300px אבל גמיש */
+    max-width: 350px; /* שלא יגדל יותר מדי */
     background-color: white;
     color: black;
     padding: 20px;
-    border: 3px solid rgba(0, 255, 204, 0.8); /* Cool glowing border */
+    border: 3px solid rgba(0, 255, 204, 0.8);
     border-radius: 10px;
     text-align: center;
     transition: transform 0.3s, border 0.3s, border-radius 0.3s, background-color 0.3s, color 0.3s;
@@ -26,14 +28,25 @@
     transform: scale(1.05);
     background-color: black;
     color: white;
-    border: 3px solid rgba(0, 255, 204, 1); /* Stronger border on hover */
+    border: 3px solid rgba(0, 255, 204, 1);
     animation: suddenRound 0.2s forwards;
 }
 
-/* Gradient effect for name (h3) on hover */
 .story-card:hover h3 {
     background: linear-gradient(90deg, #00ffcc, #00aaff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
+}
+
+/* רספונסיביות נוספת למסכים ממש קטנים */
+@media (max-width: 600px) {
+  .stories-container {
+    gap: 15px;
+    padding: 10px;
+  }
+  .story-card {
+    flex: 1 1 90%;
+    max-width: 90%;
+  }
 }

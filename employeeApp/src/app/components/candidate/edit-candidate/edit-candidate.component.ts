@@ -29,7 +29,7 @@ export class EditCandidateComponent {
   }
 
   ngOnInit(): void {
-    this.userService.getUserById(this.userId).subscribe(user => this.userForm.patchValue(user));
+    this.userService.getUser(this.userId).subscribe(user => this.userForm.patchValue(user));
   }
 
   onSubmit(): void {

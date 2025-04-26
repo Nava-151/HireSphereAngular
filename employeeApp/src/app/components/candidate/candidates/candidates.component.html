@@ -65,15 +65,21 @@
 </header>
 
 
-
-@if (candidatesList && candidatesList.length > 0) {
-
-   @for (c of candidatesList; track c) {
-     <app-candidate-display [candidate]="c"></app-candidate-display>
-   }
- } @else if(this.showNoCandidatesMessage==false) {
-   <p>Loading candidates...</p>
- }
- @else {
-   <p>No candidates found.</p>
- }
+@defer (on idle) {
+  @for (candidate of candidatesList$ | async; track candidate.id) {
+    <app-candidate-display [candidate]="candidate"></app-candidate-display>
+  } 
+} @loading {
+  <div class="spinner-container">
+    <mat-progress-spinner
+      color="primary"
+      mode="indeterminate"
+      diameter="50">
+    </mat-progress-spinner>
+    <div>Loading candidates...</div>
+  </div>
+} @error {
+  <div class="error-message">
+    Failed to load candidates. Please try again later.
+  </div>
+}

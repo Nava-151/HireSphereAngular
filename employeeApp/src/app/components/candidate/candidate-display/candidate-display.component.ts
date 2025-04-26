@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { UserService } from '../../../services/user.service';
 @Component({
   selector: 'app-candidate-display',
   imports: [MatCardModule, MatTableModule, MatIconModule, MatButtonModule],
@@ -37,13 +38,10 @@ export class CandidateDisplayComponent implements OnInit {
   @Input() candidate!: UserResumeDetails;
   user!: User
   AnalysisReport!: UserResumeDetails;
-  constructor(private userResumeService: ResumeDetailsService, private http: HttpClient, private cdr: ChangeDetectorRef) { }
+  constructor(private userResumeService: ResumeDetailsService, private http: HttpClient, private cdr: ChangeDetectorRef,private userService:UserService) { }
   ngOnInit() {
-    console.log('Candidate received:', this.candidate);
-
     if (this.candidate) {
       this.getUser();
-      console.log('Candidate received:', this.candidate);
       this.getAiResponse();
       this.cdr.detectChanges();
     }
@@ -54,17 +52,13 @@ export class CandidateDisplayComponent implements OnInit {
   }
 
   getUser = () => {
-    console.log("cand id: " + this.candidate.candidateId);
-    this.userResumeService.getUser(this.candidate.candidateId).subscribe((user: User) => {
+    this.userService.getUser(this.candidate.candidateId).subscribe((user: User) => {
       this.user = user;
-      console.log("user in get " + this.user);
 
     });
   }
 
   getAiResponse = () => {
-    console.log("in ai response ");
-    console.log(this.candidate.idResponse);
 
     this.userResumeService.getResponse(this.candidate.idResponse).subscribe((response: UserResumeDetails) => {
       this.AnalysisReport = response;
