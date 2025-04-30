@@ -13,6 +13,6 @@ This is the frontend application for **recruiters** using the HireSphere platfor
 - Angular Material
 
 ## 🔗 Live Site
-https://hirespereangular.onrender.com
+https://hiresphereangular.onrender.com
 ## ⚠️ Status
 This application is **currently under development** and may change frequently.
