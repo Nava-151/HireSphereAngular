@@ -11,14 +11,14 @@
 
     <button (click)="startFilter()" mat-raised-button class="filter-button">
       <span class="material-icons">search</span>
-    </button>
+    </button>0
   </div>
 
   <div class="filter-inputs">
     @if (selectedFilter === 'Experience') {
       <div>
         <label>Years of Experience:</label>
-        <input matInput type="number" [(ngModel)]="experienceYears" placeholder="Enter years" />
+        <input onclick="startFilter()" matInput type="number" [(ngModel)]="experienceYears" placeholder="Enter years" />
       </div>
     }
 
@@ -66,8 +66,8 @@
 
 
 @defer (on idle) {
-  @for (candidate of candidatesList$ | async; track candidate.id) {
-    <app-candidate-display [candidate]="candidate"></app-candidate-display>
+  @for (userDetail of candidatesList$ | async; track userDetail.id) {
+    <app-candidate-display [userDetails]="userDetail"></app-candidate-display>
   } 
 } @loading {
   <div class="spinner-container">

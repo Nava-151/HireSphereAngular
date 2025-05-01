@@ -35,15 +35,12 @@ private dailog=inject(MatDialog)
 
   credentials = { email: '', passwordHash: '',role:userRole.Employer };
   router = inject(Router);
-  // dialogRef: any;
   constructor(private auhenticationService: AuthenticationService) { }
   onSubmit() {
     this.loginForm.value?.email ? this.credentials.email = this.loginForm.value.email : "";
     this.loginForm.value?.password ? this.credentials.passwordHash = this.loginForm.value.password : "";
     this.auhenticationService.login(this.credentials).subscribe(res => {
       console.log(res)
-      // localStorage.setItem("id", res.userId);
-      // localStorage.setItem("token", res.token);
       this.auhenticationService.isLoggedIn = true;
       this.router.navigate(['candidates']);
     }, error => {

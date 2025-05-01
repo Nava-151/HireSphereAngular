@@ -1,4 +1,4 @@
 export const environment = {
-    production: true,
-    apiUrl: 'https://hiresphereapi.onrender.com'
+    production: false,
+    apiUrl:'https://hiresphereapi.onrender.com',
   };

@@ -14,7 +14,7 @@ import { UserService } from '../../../services/user.service';
   templateUrl: './candidate-display.component.html',
   styleUrl: './candidate-display.component.css'
 })
-export class CandidateDisplayComponent implements OnInit {
+export class CandidateDisplayComponent  {
   watch = (id: number) => {
     console.log("in watch compo");
     this.userResumeService.viewFile(id).subscribe(response => {
@@ -35,33 +35,9 @@ export class CandidateDisplayComponent implements OnInit {
     });
   }
 
-  @Input() candidate!: UserResumeDetails;
+  @Input() userDetails!: UserResumeDetails;
   user!: User
   AnalysisReport!: UserResumeDetails;
   constructor(private userResumeService: ResumeDetailsService, private http: HttpClient, private cdr: ChangeDetectorRef,private userService:UserService) { }
-  ngOnInit() {
-    if (this.candidate) {
-      this.getUser();
-      this.getAiResponse();
-      this.cdr.detectChanges();
-    }
-  }
-  ngOnChanges() {
-    console.log('Candidate received: in chabge', this.candidate);
-    this.getUser()
-  }
-
-  getUser = () => {
-    this.userService.getUser(this.candidate.candidateId).subscribe((user: User) => {
-      this.user = user;
-
-    });
-  }
-
-  getAiResponse = () => {
-
-    this.userResumeService.getResponse(this.candidate.idResponse).subscribe((response: UserResumeDetails) => {
-      this.AnalysisReport = response;
-    });
-  }
+ 
 }

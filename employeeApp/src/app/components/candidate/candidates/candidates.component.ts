@@ -33,7 +33,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   styleUrl: './candidates.component.css'
 })
 export class CandidatesComponent {
-  // candidatesList: UserResumeDetails[] = [];
   showNoCandidatesMessage = false;
   candidatesList$!: Observable<UserResumeDetails[]>; // שימי לב שיש פה Observable
 

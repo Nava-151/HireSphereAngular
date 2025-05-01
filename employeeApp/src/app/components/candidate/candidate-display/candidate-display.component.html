@@ -1,24 +1,24 @@
-@if(candidate)
+@if(userDetails)
 {
 <div class="container">
   <div class="card user-card">
     <h2>User Information</h2>
     <div class="content">
-      <p><strong>Name:</strong> {{ user.fullName }}</p>
-      <p><strong>Email:</strong> {{ user.email }}</p>
-      <p><strong>Phone:</strong> {{ user.phone }}</p>
+      <p><strong>Name:</strong> {{ userDetails.candidate.fullName }}</p>
+      <p><strong>Email:</strong> {{ userDetails.candidate.email }}</p>
+      <p><strong>Phone:</strong> {{ userDetails.candidate.phone }}</p>
     </div>
   </div>
 
   <div class="card resume-card">
     <mat-card-actions>
-      <button mat-raised-button  (click)="download(candidate.fileKey)">
+      <button mat-raised-button  (click)="download(userDetails.fileKey)">
         <mat-icon>download</mat-icon>
         download
       </button>
-      <button mat-raised-button   (click)="watch(candidate.candidateId)">
+      <button mat-raised-button   (click)="watch(userDetails.candidateId)">
         <mat-icon>visibility</mat-icon>
-        view the file
+        view 
       </button>
     </mat-card-actions>
   </div>

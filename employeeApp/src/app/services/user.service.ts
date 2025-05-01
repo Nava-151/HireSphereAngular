@@ -9,13 +9,10 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-
-
   private apiUrl = `${environment.apiUrl}/users`;
 
   constructor(private http: HttpClient) { }
 
-  // Method to update user details
   updateUser(id: number, userData: UserUpdateDetails): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, userData);
   }
