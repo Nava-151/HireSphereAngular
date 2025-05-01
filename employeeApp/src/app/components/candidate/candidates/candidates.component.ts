@@ -43,7 +43,7 @@ export class CandidatesComponent {
   paramsList: any[] = [
     { id: 0, filter: "Experience", icon: "work" },
     { id: 2, filter: "Languages", icon: "language" },
-    { id: 3, filter: "EnglishLevel", icon: "translate" },
+    { id: 3, filter: "English", icon: "translate" },
     { id: 4, filter: "Education", icon: "school" },
     { id: 5, filter: "Mark", icon: "bookmark" }
 
