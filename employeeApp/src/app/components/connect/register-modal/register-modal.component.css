@@ -1,6 +1,6 @@
 
 mat-form-field {
-    width: 100%;
+    width: 150%;
     margin-bottom: 15px;
 }
 
@@ -37,7 +37,17 @@ mat-form-field {
     box-shadow: 0 0 20px rgba(0, 255, 133, 1);
 }
 
+.disabled-button{
+    background-color: gray !important;
+    color: black !important;
 
+}
+
+.turquoise-button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+  }
 
 a:hover {
     text-shadow: 0 0 10px #00ff85;
@@ -81,7 +91,7 @@ a:hover {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    width: 400px;
+    width: 60vw;
     max-width: 90%;
 }
 

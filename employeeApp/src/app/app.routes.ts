@@ -5,6 +5,7 @@ import { LoginModalComponent } from './components/connect/login-modal/login-moda
 import { EditCandidateComponent } from './components/candidate/edit-candidate/edit-candidate.component';
 import { CandidatesComponent } from './components/candidate/candidates/candidates.component';
 import { authGuard } from './auth.guard';
+import { VideoCallComponent } from './components/video-call/video-call.component';
 
 export const routes: Routes = [
     { path: '', component: HomePageComponent },
@@ -12,5 +13,7 @@ export const routes: Routes = [
     { path: 'register', component: RegisterModalComponent },
     { path: 'candidates', component: CandidatesComponent, canActivate: [authGuard] },
     {path: 'update', component: EditCandidateComponent, canActivate: [authGuard] },
+    {path: 'interview', component: VideoCallComponent },
+
 ];
 

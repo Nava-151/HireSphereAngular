@@ -20,6 +20,16 @@
         <mat-icon>visibility</mat-icon>
         view 
       </button>
+      <button mat-raised-button color="primary" (click)="inviteToInterview(userDetails.candidateId)">
+        <mat-icon>video_call</mat-icon>
+        Invite for Interview
+      </button>
+      
+      @if(showVideoCall)
+      {
+        <app-video-call [candidateId]="userDetails.candidateId"></app-video-call>
+      }
+
     </mat-card-actions>
   </div>
 

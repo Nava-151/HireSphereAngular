@@ -18,7 +18,6 @@ export class ResumeDetailsService {
   analysisResults$ = this.analysisResultsSubject.asObservable(); // הקומפוננטות יאזינו לו
 
   constructor(private http: HttpClient) {
-    console.log("in resume details service");
     this.startPolling(); 
   }
 

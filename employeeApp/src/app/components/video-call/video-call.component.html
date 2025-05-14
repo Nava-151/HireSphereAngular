@@ -1,0 +1,43 @@
+<mat-card class="video-call-card">
+    <mat-card-header>
+      <mat-card-title>שיחת וידאו</mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content>
+      <div class="video-container">
+        <video #localVideo autoplay muted playsinline></video>
+        <video #remoteVideo autoplay playsinline></video>
+      </div>
+    </mat-card-content>
+  
+    <mat-card-actions class="controls">
+      <button mat-raised-button color="primary" (click)="invite()">
+        📨 שלח הזמנה
+      </button>
+  
+      <button mat-raised-button color="accent" (click)="call()" [disabled]="callStarted">
+        📞 התחל שיחה
+      </button>
+  
+      @if (callStarted) {
+        <button mat-stroked-button color="primary" (click)="toggleMute()">
+          {{ isMuted ? '🎙️ הפעל מיקרופון' : '🔇 השתק' }}
+        </button>
+  
+        <button mat-stroked-button color="primary" (click)="toggleVideo()">
+          {{ isVideoOff ? '📹 הפעל מצלמה' : '📷 כבה מצלמה' }}
+        </button>
+  
+        <button mat-raised-button color="warn" (click)="endCall()">
+          ❌ סיים שיחה
+        </button>
+      }
+    </mat-card-actions>
+  
+    @if (callStarted) {
+      <mat-card-footer class="timer">
+        <!-- 🕒 זמן שיחה: {{ formatTime(timer) }} -->
+      </mat-card-footer>
+    }
+  </mat-card>
+  

@@ -1,73 +1,60 @@
-<!-- 
-<div class="register-modal" >
-    <div class="register-modal-content">
-        <h2>Register</h2>
-        <form [formGroup]="registerForm" (submit)="onSubmit()">
-            <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="email" placeholder="Enter your email">
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-                <mat-label>Name</mat-label>
-                <input matInput formControlName="name" placeholder="Enter your name">
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput type="password" formControlName="password" placeholder="Enter your password">
-            </mat-form-field>
-
-              <mat-form-field appearance="outline">
-                <mat-label>Phone</mat-label>
-                <input matInput type="text" formControlName="phone" placeholder="Enter your phone">
-            </mat-form-field>
-
-
-            <div class="button-group">
-                <button mat-raised-button class="turquoise-button" type="submit">
-                    <mat-icon>send</mat-icon> Sign up
-                </button>
-                <button mat-raised-button color="warn" (click)="closeModal()">
-                    <mat-icon>close</mat-icon> Close
-                </button>
-            </div>
-            <p>already have an acoount? <a routerLink="/login">Sign in</a></p>
-        </form>
-    </div>
-</div> -->
 <div class="register-modal">
     <div class="register-modal-content">
         <h2>Register</h2>
-        <form [formGroup]="registerForm" (submit)="onSubmit()">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
                 <input matInput formControlName="email" placeholder="Enter your email">
+                @if (submitted && registerForm.get('email')?.hasError('required')) {
+                <mat-error>Email is required</mat-error>
+                }
+                @if (submitted && registerForm.get('email')?.hasError('email')) {
+                <mat-error>Invalid email format</mat-error>
+                }
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Name</mat-label>
                 <input matInput formControlName="name" placeholder="Enter your name">
+                @if (submitted && registerForm.get('name')?.hasError('required')) {
+                <mat-error>Name is required</mat-error>
+                }
+                @if (submitted && registerForm.get('name')?.hasError('minlength')) {
+                <mat-error>Name must be at least 2 characters</mat-error>
+                }
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
                 <input matInput type="password" formControlName="password" placeholder="Enter your password">
+                @if (submitted && registerForm.get('password')?.hasError('required')) {
+                <mat-error>Password is required</mat-error>
+                }
+                @if (submitted && registerForm.get('password')?.hasError('minlength')) {
+                <mat-error>Password must be at least 6 characters</mat-error>
+                }
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Phone</mat-label>
                 <input matInput type="text" formControlName="phone" placeholder="Enter your phone">
+                @if (submitted && registerForm.get('phone')?.hasError('required')) {
+                <mat-error>Phone is required</mat-error>
+                }
+                @if (submitted && registerForm.get('phone')?.hasError('pattern')) {
+                <mat-error>Phone must be 9–10 digits</mat-error>
+                }
             </mat-form-field>
 
             <div class="button-group">
-                <button mat-raised-button class="turquoise-button" type="submit">
+                <button mat-raised-button class="turquoise-button" type="submit" [disabled]="registerForm.invalid">
                     <mat-icon>send</mat-icon> Sign up
                 </button>
                 <button mat-raised-button color="warn" (click)="closeModal()">
                     <mat-icon>close</mat-icon> Close
                 </button>
             </div>
+
             <p>Already have an account? <a routerLink="/login">Sign in</a></p>
         </form>
     </div>

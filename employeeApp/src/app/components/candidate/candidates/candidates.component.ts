@@ -15,7 +15,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-// import { DeferBlockModule } from '@angular/core';
 @Component({
   selector: 'app-candidate',
   imports: [CandidateDisplayComponent, FormsModule,
@@ -50,7 +49,6 @@ export class CandidatesComponent {
   ];
 
   selectedFilter: string | null = null;
-
   experienceYears: number = 0;
   selectedLanguages: string[] = [];
   englishLevel: string = '';

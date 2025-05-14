@@ -17,7 +17,6 @@ export class AuthenticationService {
 
     constructor(private http: HttpClient) {}
 
-    // **רישום משתמש חדש**
     register(user: User): Observable<any> {
         return this.http.post<{id:number,user:User,token:string}>(`${this.apiUrl}/register`, user).pipe(
             tap((registered) => {
@@ -29,7 +28,6 @@ export class AuthenticationService {
         );
     }
 
-    // **התחברות והתחלת סשן**
     login(credentials: { email: string; passwordHash: string }): Observable<any> {
         const res={Email:credentials.email,PasswordHash:credentials.passwordHash,Role:1};
         console.log(res);
@@ -44,14 +42,12 @@ export class AuthenticationService {
         );
     }
 
-    // **התנתקות מהמערכת**
     logout(): void {
         localStorage.removeItem("token"); // מחיקת הטוקן
         this.isLoggedIn = false;
         this.currentUser = null;
     }
 
-    // **בדיקה אם המשתמש מחובר**
     isAuthenticated(): boolean {
         return !!localStorage.getItem("token");
     }

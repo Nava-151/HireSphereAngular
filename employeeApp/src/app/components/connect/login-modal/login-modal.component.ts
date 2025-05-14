@@ -1,7 +1,7 @@
 
 
 import { Component, inject, Input } from '@angular/core';
-import { FormGroup, FormControl, NgModel, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormControl, NgModel, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -29,18 +29,18 @@ import { User, userRole } from '../../../models/user';
 export class LoginModalComponent {
 private dailog=inject(MatDialog)
   loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
+    email: new FormControl('',[Validators.required, Validators.email]),
+    password: new FormControl('',[Validators.required, Validators.minLength(2)]),
   });
 
   credentials = { email: '', passwordHash: '',role:userRole.Employer };
   router = inject(Router);
   constructor(private auhenticationService: AuthenticationService) { }
+
   onSubmit() {
     this.loginForm.value?.email ? this.credentials.email = this.loginForm.value.email : "";
     this.loginForm.value?.password ? this.credentials.passwordHash = this.loginForm.value.password : "";
     this.auhenticationService.login(this.credentials).subscribe(res => {
-      console.log(res)
       this.auhenticationService.isLoggedIn = true;
       this.router.navigate(['candidates']);
     }, error => {
@@ -50,7 +50,7 @@ private dailog=inject(MatDialog)
   }
 
   closeModal(): void {
-    // this.dailog.close();
+    this.router.navigate(['']);
   }
 }
 
