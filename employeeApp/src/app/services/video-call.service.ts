@@ -13,7 +13,7 @@ export class VideoCallService {
   onAnswer: (connectionId: string, answer: RTCSessionDescriptionInit) => void = () => { };
   onIceCandidate: (connectionId: string, candidate: RTCIceCandidateInit) => void = () => { };
 
-  connect(userId: string) {
+  async connect(userId: string) {
     console.log("🔌 Attempting to connect with userId:", userId);
 
     this.hubConnection = new HubConnectionBuilder()
@@ -21,8 +21,7 @@ export class VideoCallService {
       .withAutomaticReconnect()
       .build();
 
-    this.hubConnection
-      .start()
+    await this.hubConnection.start()
       .then(() => {
         console.log('✅ SignalR connected');
 

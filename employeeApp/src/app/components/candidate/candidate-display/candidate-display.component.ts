@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Input, OnInit } from '@angular/core';
 import { UserResumeDetails } from '../../../models/UserResumeDetails';
 import { ResumeDetailsService } from '../../../services/resume-details.service';
 import { User } from '../../../models/user';
@@ -8,10 +8,10 @@ import { HttpClient } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../../../services/user.service';
-import { VideoCallComponent } from '../../video-call/video-call.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-candidate-display',
-  imports: [MatCardModule, MatTableModule, MatIconModule, MatButtonModule,VideoCallComponent],
+  imports: [MatCardModule, MatTableModule, MatIconModule, MatButtonModule],
   templateUrl: './candidate-display.component.html',
   styleUrl: './candidate-display.component.css'
 })
@@ -37,12 +37,11 @@ export class CandidateDisplayComponent  {
     });
   }
   inviteToInterview(candidateId: number): void {
-    this.showVideoCall=true
-    // שלב ראשון: שליחת הזמנה ל-Backend או WebSocket
-    // כרגע לצורך בדיקה פשוטה, נדמה שליחת הזמנה לקונסול
-    console.log('Inviting candidate to interview with ID:', candidateId);
-  
-    // בעתיד: תשלבי כאן קריאה ל-API או SignalR או WebSocket
+    console.log("in inviteToInterview");
+    
+    this.router.navigate(['/video-call', candidateId]);
+    console.log("afye in");
+    
   }
   
   @Input() userDetails!: UserResumeDetails;
@@ -50,5 +49,6 @@ export class CandidateDisplayComponent  {
   AnalysisReport!: UserResumeDetails;
   constructor(private userResumeService: ResumeDetailsService, private http: HttpClient, private cdr: ChangeDetectorRef,private userService:UserService) { }
   showVideoCall = false;
+   router=inject(Router);
  
 }

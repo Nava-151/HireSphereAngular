@@ -1,37 +1,44 @@
-@if(userDetails)
-{
+@if(userDetails) {
 <div class="container">
   <div class="card user-card">
-    <h2>User Information</h2>
+    <h2>Candidate Profile</h2>
     <div class="content">
       <p><strong>Name:</strong> {{ userDetails.candidate.fullName }}</p>
       <p><strong>Email:</strong> {{ userDetails.candidate.email }}</p>
       <p><strong>Phone:</strong> {{ userDetails.candidate.phone }}</p>
-    </div>
-  </div>
 
-  <div class="card resume-card">
-    <mat-card-actions>
-      <button mat-raised-button  (click)="download(userDetails.fileKey)">
-        <mat-icon>download</mat-icon>
-        download
-      </button>
-      <button mat-raised-button   (click)="watch(userDetails.candidateId)">
-        <mat-icon>visibility</mat-icon>
-        view 
-      </button>
-      <button mat-raised-button color="primary" (click)="inviteToInterview(userDetails.candidateId)">
-        <mat-icon>video_call</mat-icon>
-        Invite for Interview
-      </button>
-      
-      @if(showVideoCall)
-      {
-        <app-video-call [candidateId]="userDetails.candidateId"></app-video-call>
+      @if(userDetails.response.experience) {
+      <p><strong>Experience:</strong> {{ userDetails.response.experience }} years</p>
       }
 
-    </mat-card-actions>
-  </div>
+      @if(userDetails.response.education) {
+      <p><strong>Education:</strong> {{ userDetails.response.education }} </p>
+      }
 
+      <hr>
+      <br>
+
+      <h2>Resume Actions</h2>
+      <p>Review this candidate's resume and schedule an interview</p>
+
+      <div class="button-container">
+        <button class="btn btn-download" (click)="download(userDetails.fileKey)">
+          <mat-icon>download</mat-icon>
+          Download CV
+        </button>
+
+        <button class="btn btn-view" (click)="watch(userDetails.candidateId)">
+          <mat-icon>visibility</mat-icon>
+          View Resume
+        </button>
+
+        <button class="btn btn-interview" (click)="inviteToInterview(userDetails.candidateId)">
+          <mat-icon>video_call</mat-icon>
+           Interview
+        </button>
+      </div>
+
+    </div>
+  </div>
 </div>
 }

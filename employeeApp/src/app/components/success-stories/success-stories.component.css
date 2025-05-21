@@ -1,51 +1,243 @@
-@keyframes suddenRound {
-    0% { border-radius: 10px; }
-    100% { border-radius: 30px; }
+/* Success Stories Section */
+.success-stories-section {
+  padding: 80px 24px;
+  background-color: 2a2a2a;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Section Header */
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  font-weight: 700;
+  color: #2a2a2a;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #00eaff, #00ff85);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Stories Container */
 .stories-container {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 25px;
-    margin-top: 30px;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* Story Card */
 .story-card {
-    flex: 1 1 300px; 
-    max-width: 350px; 
-    background-color: white;
-    color: black;
-    padding: 20px;
-    border: 3px solid rgba(0, 255, 204, 0.8);
-    border-radius: 10px;
-    text-align: center;
-    transition: transform 0.3s, border 0.3s, border-radius 0.3s, background-color 0.3s, color 0.3s;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  border: 1px solid rgba(0, 234, 255, 0.1);
 }
 
 .story-card:hover {
-    transform: scale(1.05);
-    background-color: black;
-    color: white;
-    border: 3px solid rgba(0, 255, 204, 1);
-    animation: suddenRound 0.2s forwards;
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 255, 133, 0.2);
 }
 
-.story-card:hover h3 {
-    background: linear-gradient(90deg, #00ffcc, #00aaff);
-    -webkit-text-fill-color: transparent;
-    font-weight: bold;
+/* Card Header with Logo */
+.card-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(to right, rgba(0, 234, 255, 0.1), rgba(0, 255, 133, 0.1));
+  border-bottom: 1px solid rgba(0, 234, 255, 0.2);
 }
 
-/* רספונסיביות נוספת למסכים ממש קטנים */
-@media (max-width: 600px) {
+.company-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.company-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.company-info {
+  flex: 1;
+}
+
+.company-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* Rating Stars */
+.rating {
+  display: flex;
+}
+
+.star-icon {
+  color: #00ff85;
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+}
+
+/* Card Content */
+mat-card-content {
+  padding: 20px;
+  position: relative;
+}
+
+.quote-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  opacity: 0.2;
+  color: #00eaff;
+}
+
+.feedback {
+  margin: 20px 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Hiring Details */
+.hiring-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 234, 255, 0.1);
+  padding: 8px 12px;
+  border-radius: 20px;
+}
+
+.detail-item mat-icon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  margin-right: 6px;
+  color: #00eaff;
+}
+
+.detail-item span {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Card Footer */
+mat-card-footer {
+  padding: 15px 20px;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+}
+
+.author-info h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+}
+
+.author-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* CTA Container */
+.cta-container {
+  text-align: center;
+  margin-top: 60px;
+  padding: 30px;
+  background: linear-gradient(135deg, rgba(0, 234, 255, 0.1), rgba(0, 255, 133, 0.1));
+  border-radius: 12px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-container h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: white;
+}
+
+/* Primary Button */
+.primary-button {
+  background: linear-gradient(90deg, #00eaff, #00ff85) !important;
+  color: #1a1a1a !important;
+  font-weight: 600 !important;
+  padding: 8px 24px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 15px rgba(0, 255, 133, 0.4) !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.primary-button:hover {
+  box-shadow: 0 6px 20px rgba(0, 255, 133, 0.6) !important;
+  transform: translateY(-2px);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
   .stories-container {
-    gap: 15px;
-    padding: 10px;
+    grid-template-columns: 1fr;
   }
-  .story-card {
-    flex: 1 1 90%;
-    max-width: 90%;
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .card-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .company-logo {
+    margin-right: 0;
+    margin-bottom: 15px;
   }
 }

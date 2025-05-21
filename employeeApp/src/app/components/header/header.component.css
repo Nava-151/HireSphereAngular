@@ -1,0 +1,70 @@
+.sidenav-container {
+  z-index: 100;
+  height: auto;
+  /* position: relative; */
+  
+}
+mat-sidenav {
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.hiresphere-title {
+  background: linear-gradient(145deg, #00eaff, #00ff85);
+  color: black;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 255, 133, 0.8);
+  padding: 10px 20px;
+  transition: all 0.3s ease-in-out;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+}
+
+.material-icons,
+  mat-icon {
+  margin-right: 8px;
+}
+
+.spacer {
+  flex: 1;
+}
+/* 
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+} */
+
+.burger-button {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-buttons {
+    display: none;
+  }
+
+  .burger-button {
+    display: inline-flex;
+  }
+
+  .hiresphere-title {
+    font-size: 1.2em;
+  }
+}
+.sidenav {
+  height: 100%; 
+  display: flex;
+  flex-direction: column; /* שורה חדשה לכל כפתור */
+  width: 150px;
+  padding: 20px;
+  z-index: 10;
+  overflow: visible;
+}

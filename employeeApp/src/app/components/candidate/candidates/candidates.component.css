@@ -1,95 +1,234 @@
 body {
-    background: #121212;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-}
-.filter-container {
-    display: flex;
-    gap: 15px;
-}
-button {
-    background: linear-gradient(145deg, #00eaff, #00ff85);
-    color: black;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 255, 133, 0.8);
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(0, 255, 133, 1);
-}
-.material-icons {
-    margin-right: 8px;
-}
-.header-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 16px;
-    background-color:black;
-    border-bottom: 2px solid #ddd;
+  background: #121212;
+  font-family: 'Roboto', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
+/* Header container */
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+  background: linear-gradient(180deg, #121212 0%, #1a1a1a 100%);
+  border-bottom: 1px solid rgba(0, 234, 255, 0.2);
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Filter section title */
+.filter-section-title {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.filter-section-title span {
+  background: linear-gradient(90deg, #00eaff, #00ff85);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+/* Filter container */
 .filter-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  justify-content: center;
+  max-width: 1000px;
+  width: 100%;
 }
-.filter-button{
-    color: black !important;
+
+/* Filter button */
+.filter-button {
+  background: rgba(0, 234, 255, 0.1);
+  color: white !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(0, 234, 255, 0.2);
+  padding: 10px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  justify-content: center;
 }
-.filter-inputs{
-    color: wheat;
+
+.filter-button:hover {
+  background: rgba(0, 234, 255, 0.2);
+  border-color: rgba(0, 234, 255, 0.4);
+  transform: translateY(-2px);
 }
-.loading-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 200px;
-    text-align: center;
-  }
-  
-   /* Make the filter buttons and inputs responsive */
+
+.filter-button.active {
+  background: linear-gradient(90deg, #00eaff, #00ff85);
+  color: black !important;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 255, 163, 0.5);
+}
+
+.filter-button .material-icons {
+  font-size: 18px;
+}
+
+/* Search button */
+.search-button {
+  background: linear-gradient(90deg, #00eaff, #00ff85);
+  color: black !important;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 255, 163, 0.5);
+  transition: all 0.3s ease;
+}
+
+.search-button:hover {
+  box-shadow: 0 6px 15px rgba(0, 255, 163, 0.7);
+  transform: translateY(-2px);
+}
+
+/* Filter inputs container */
+.filter-inputs {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 600px;
+  color: white;
+  border: 1px solid rgba(0, 234, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.filter-inputs > div {
+  margin-bottom: 15px;
+}
+
+.filter-inputs label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Input styling */
+.filter-inputs input, 
+.filter-inputs mat-select {
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 234, 255, 0.3);
+  border-radius: 6px;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.filter-inputs input:focus {
+  border-color: #00ff85;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 255, 133, 0.3);
+}
+
+/* Radio buttons */
+.filter-inputs mat-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-inputs mat-radio-button {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.filter-inputs mat-radio-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Loading spinner */
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0;
+  color: white;
+  gap: 20px;
+}
+
+.spinner-container mat-progress-spinner {
+  margin-bottom: 15px;
+}
+
+/* Error message */
+.error-message {
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff5555;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin: 30px auto;
+  max-width: 500px;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+/* No results message */
+.no-results {
+  text-align: center;
+  padding: 40px 20px;
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  margin: 30px auto;
+  max-width: 600px;
+}
+
+.no-results h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #00eaff;
+}
+
+/* Results count */
+.results-count {
+  text-align: center;
+  color: white;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+
+.results-count span {
+  color: #00ff85;
+  font-weight: bold;
+}
+
+/* Make the filter buttons and inputs responsive */
 @media (max-width: 768px) {
-    .filter-container {
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-  
-    .filter-button {
-      flex: 1 1 100%;
-      min-width: 200px;
-      justify-content: center;
-    }
-  
-    .filter-inputs {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      width: 100%;
-      align-items: center;
-    }
-  
-    .filter-inputs > div {
-      width: 90%;
-    }
+  .filter-container {
+    flex-direction: column;
+    align-items: stretch;
   }
-  
-  /* Make the spinner look good on mobile */
-  @media (max-width: 768px) {
-    .loading-container {
-      height: 300px;
-    }
+
+  .filter-button {
+    width: 100%;
   }
-  
+
+  .filter-inputs {
+    padding: 15px;
+    width: calc(100% - 30px);
+  }
+
+  .filter-inputs mat-radio-group {
+    flex-direction: column;
+  }
+}

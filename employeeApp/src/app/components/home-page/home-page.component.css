@@ -34,7 +34,7 @@ body, html {
   padding: 10px;
 }
 
-/* Spacer for alignment */
+/* Spacer for alig+nment */
 .spacer {
   flex: 1;
 }
@@ -95,9 +95,9 @@ body, html {
   display: block;
 }
 
-.material-icons {
+/* .material-icons {
   margin-right: 8px;
-}
+} */
 
 /* Overlay for image */
 .image-overlay::after {

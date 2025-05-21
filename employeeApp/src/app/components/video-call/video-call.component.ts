@@ -1,17 +1,18 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MatCardFooter, MatCard, MatCardHeader, MatCardTitle, MatCardContent, MatCardActions } from '@angular/material/card';
 import { VideoCallService } from '../../services/video-call.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-video-call',
-  imports: [MatCardFooter,MatCard,MatCardHeader,MatCardTitle,MatCardContent,MatCardActions],
+  imports: [MatCard,MatCardHeader,MatCardTitle,MatCardContent,MatCardActions],
   templateUrl: './video-call.component.html',
   styleUrls: ['./video-call.component.css'],
 })
 export class VideoCallComponent implements OnInit {
   @ViewChild('localVideo') localVideo!: ElementRef<HTMLVideoElement>;
   @ViewChild('remoteVideo') remoteVideo!: ElementRef<HTMLVideoElement>;
-  @Input() candidateId!: number;
+ candidateId: string = ''; // זה צריך להגיע מהשרת או מהמשתמש
   private localStream!: MediaStream;
   private peerConnection!: RTCPeerConnection;
   private targetConnectionId = '';
@@ -19,13 +20,13 @@ export class VideoCallComponent implements OnInit {
   isMuted = false;
   isVideoOff = false;
 
-  constructor(private videoCallService: VideoCallService) {}
+  constructor(private videoCallService: VideoCallService,private route :ActivatedRoute) {}
 
   async ngOnInit() {
     console.log("in ngOnInit video call service"); 
-    
-    const userId = localStorage.getItem('userId')+''; // לזהות משתמש לפי התחברות
-    this.videoCallService.connect(userId);
+    const userId = sessionStorage.getItem('userId')+''; // לזהות משתמש לפי התחברות
+   await this.videoCallService.connect(userId);
+    this.candidateId= this.route.snapshot.paramMap.get('id')||'';
 
     this.videoCallService.onInterviewInvite = async (callerId: string) => {
       console.log('קיבלת הזמנה מ:', callerId);
@@ -90,7 +91,7 @@ export class VideoCallComponent implements OnInit {
 
   async call() {
     //chabge or check it
-    this.targetConnectionId = this.candidateId+''; // זה צריך להגיע מהשרת או מהמשתמש
+    this.targetConnectionId = this.candidateId; // זה צריך להגיע מהשרת או מהמשתמש
     await this.startCall();
     const offer = await this.peerConnection.createOffer();
     await this.peerConnection.setLocalDescription(offer);
@@ -114,8 +115,10 @@ export class VideoCallComponent implements OnInit {
   }
 
   invite() {
-    const callerUserId = localStorage.getItem('userId')+""; 
-    const targetUserId = ''+this.candidateId;    
+    console.log("inside invite");
+    
+    const callerUserId = sessionStorage.getItem('userId')+""; 
+    const targetUserId = this.candidateId;    
     this.videoCallService.inviteToInterview(targetUserId, callerUserId);
   }
 }

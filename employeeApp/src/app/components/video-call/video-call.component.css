@@ -1,37 +1,418 @@
+/* Main container */
+.video-call-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #121212;
+  padding: 20px;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Card styling */
 .video-call-card {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1rem;
-    display: flex;
+  width: 100%;
+  max-width: 1400px;
+  background-color: #1a1a1a;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header styling */
+mat-card-header {
+  background: linear-gradient(90deg, #00eaff, #00ff85);
+  padding: 20px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+mat-card-title {
+  color: #121212;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.call-icon {
+  margin-right: 12px;
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #121212;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ff5252;
+  margin-right: 8px;
+  position: relative;
+}
+
+.status-dot::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  background-color: rgba(255, 82, 82, 0.4);
+  animation: pulse 1.5s infinite;
+}
+
+.connection-status.connected .status-dot {
+  background-color: #00ff85;
+}
+
+.connection-status.connected .status-dot::after {
+  background-color: rgba(0, 255, 133, 0.4);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* Content styling */
+.card-content {
+  padding: 30px;
+  flex: 1;
+}
+
+/* Video grid */
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  gap: 20px;
+  height: 70vh;
+}
+
+.video-grid.call-active {
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+/* Video wrappers */
+.video-wrapper {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #0f0f0f;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.remote-video-wrapper {
+  height: 100%;
+}
+
+.local-video-wrapper {
+  height: 100%;
+  border: 2px solid rgba(0, 234, 255, 0.5);
+}
+
+/* Video elements */
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: #0f0f0f;
+}
+
+/* Participant labels */
+.participant-label {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  z-index: 10;
+}
+
+/* Video overlay for waiting state */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 5;
+}
+
+.waiting-indicator {
+  text-align: center;
+  color: white;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 234, 255, 0.3);
+  border-top: 4px solid #00eaff;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Video status indicators */
+.video-status-indicators {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.status-indicator {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.status-indicator.active {
+  opacity: 1;
+}
+
+/* Controls section */
+.controls {
+  padding: 20px 30px;
+  background-color: #1e1e1e;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.control-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Button styling */
+.control-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #2a2a2a;
+  color: white;
+  min-width: 100px;
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.control-btn span {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.control-btn:hover {
+  transform: translateY(-3px);
+}
+
+.control-btn:active {
+  transform: translateY(0);
+}
+
+/* Button variants */
+.invite-btn {
+  background-color: #2a2a2a;
+}
+
+.invite-btn .btn-icon {
+  background-color: rgba(0, 234, 255, 0.2);
+  color: #00eaff;
+}
+
+.invite-btn:hover {
+  background-color: #333333;
+}
+
+.call-btn {
+  background: linear-gradient(90deg, #00eaff, #00ff85);
+  color: #121212;
+}
+
+.call-btn .btn-icon {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #121212;
+}
+
+.call-btn:hover {
+  box-shadow: 0 5px 15px rgba(0, 255, 133, 0.4);
+}
+
+.call-btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.toggle-btn {
+  background-color: #2a2a2a;
+}
+
+.toggle-btn .btn-icon {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.toggle-btn:hover {
+  background-color: #333333;
+}
+
+.toggle-btn.active {
+  background-color: #3a3a3a;
+}
+
+.toggle-btn.active .btn-icon {
+  background-color: rgba(255, 82, 82, 0.2);
+  color: #ff5252;
+}
+
+.end-btn {
+  background-color: #3a1a1a;
+}
+
+.end-btn .btn-icon {
+  background-color: rgba(255, 82, 82, 0.2);
+  color: #ff5252;
+}
+
+.end-btn:hover {
+  background-color: #4a2020;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .video-grid.call-active {
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-call-container {
+    padding: 0;
+  }
+  
+  .video-call-card {
+    border-radius: 0;
+    height: 100vh;
+  }
+  
+  mat-card-header {
+    padding: 15px;
+  }
+  
+  mat-card-title {
+    font-size: 1.4rem;
+  }
+  
+  .card-content {
+    padding: 15px;
+  }
+  
+  .video-grid {
+    height: calc(100vh - 180px);
+  }
+  
+  .control-buttons {
+    gap: 10px;
+  }
+  
+  .control-btn {
+    padding: 8px 12px;
+    min-width: 80px;
+  }
+  
+  .btn-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+  
+  .control-btn span {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-content {
     flex-direction: column;
-    gap: 1rem;
+    align-items: flex-start;
   }
   
-  .video-container {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  
-    video {
-      width: 100%;
-      max-width: 380px;
-      border-radius: 12px;
-      background-color: black;
-    }
+  .connection-status {
+    margin-top: 10px;
   }
   
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    justify-content: center;
+  .control-buttons {
+    justify-content: space-around;
   }
   
-  .timer {
-    text-align: center;
-    font-size: 1.1rem;
-    padding-top: 0.5rem;
-    color: #555;
+  .control-btn {
+    min-width: 70px;
+    padding: 8px;
   }
-  
+}

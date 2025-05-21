@@ -21,8 +21,8 @@ export class AuthenticationService {
         return this.http.post<{id:number,user:User,token:string}>(`${this.apiUrl}/register`, user).pipe(
             tap((registered) => {
                 this.currentUser = registered.user;
-                localStorage.setItem("token",registered.token)
-                localStorage.setItem("id", registered.id+""); 
+                sessionStorage.setItem("token",registered.token)
+                sessionStorage.setItem("id", registered.id+""); 
 
             })
         );
@@ -35,25 +35,25 @@ export class AuthenticationService {
         return this.http.post<{ token: string;id:number }>(`${this.apiUrl}/login`, res).pipe(
             tap((response) => {
                 console.log("in login");
-                localStorage.setItem("token", response.token); 
-                localStorage.setItem("id", response.id+""); 
+                sessionStorage.setItem("token", response.token); 
+                sessionStorage.setItem("id", response.id+""); 
                 this.isLoggedIn = true;
             })
         );
     }
 
     logout(): void {
-        localStorage.removeItem("token"); // מחיקת הטוקן
+        sessionStorage.removeItem("token"); // מחיקת הטוקן
         this.isLoggedIn = false;
         this.currentUser = null;
     }
 
     isAuthenticated(): boolean {
-        return !!localStorage.getItem("token");
+        return !!sessionStorage.getItem("token");
     }
 
     getToken(): string | null {
-        return localStorage.getItem("token");
+        return sessionStorage.getItem("token");
     }
     
 }

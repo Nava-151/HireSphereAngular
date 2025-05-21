@@ -40,14 +40,13 @@ export class ResumeDetailsService {
   }
 
   updateMark(mark: number) {
-    const id = +localStorage.getItem("id")!;
+    const id = +sessionStorage.getItem("id")!;
     return this.http.post<any>(`${this.apiUrl}/data/updateMark`, mark);
   }
 
   addMark(mark: number) {
-    const id = localStorage.getItem('id');
+    const id = sessionStorage.getItem('id');
     if (!id) {
-      console.error('ID not found in localStorage');
       return;
     }
     const params = new HttpParams()

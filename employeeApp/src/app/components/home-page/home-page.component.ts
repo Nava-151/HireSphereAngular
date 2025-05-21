@@ -6,9 +6,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { Router } from '@angular/router';
 import { SuccessStoriesComponent } from "../success-stories/success-stories.component";
+import { HeaderComponent } from '../header/header.component';
+import { AboutComponent } from '../about/about.component';
 @Component({
   selector: 'app-home-page',
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatToolbarModule, MatTabsModule, SuccessStoriesComponent],
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatToolbarModule, MatTabsModule, SuccessStoriesComponent,AboutComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
@@ -32,19 +34,19 @@ export class HomePageComponent {
     "6.png",
   ];
   currentIndex: number = 0;
-  private intervalId: any;
+  intervalId: any;
 
   ngOnInit() {
     this.startImageRotation();
   }
 
   ngOnDestroy() {
-    clearInterval(this.intervalId); // Clear interval when component is destroyed
+    clearInterval(this.intervalId);
   }
 
   startImageRotation() {
     this.intervalId = setInterval(() => {
-      this.currentIndex = (this.currentIndex + 1) % this.images.length; // Loop back to first image
-    }, 3000); // Change image every 3 seconds
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
+    }, 3000); 
   }
 }

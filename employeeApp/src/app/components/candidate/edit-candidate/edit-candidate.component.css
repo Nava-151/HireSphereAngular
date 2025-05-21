@@ -1,101 +1,224 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: black;
-    color: white;
-    margin: 0;
-    padding: 0;
-}
-
-form {
-    max-width: 700px;
-    margin: 50px auto;
-    background-color: #2d2f35;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px linear-gradient(145deg, #00eaff, #00ff85);
-    border: 2px solid linear-gradient(145deg, #00eaff, #00ff85);
-    text-align: center;
-}
-
-label {
-    font-size: 1.2rem;
-    color:  #00ff85;
-    display: block;
-    margin: 10px 0 5px;
-}
-
-input {
-    width: 80%;
-    padding: 10px;
-    margin: 10px 0 20px;
-    border: 1px solid linear-gradient(145deg, #00eaff, #00ff85);
-    border-radius: 5px;
-    background-color: white;
-    color: black;
-    font-size: 1rem;
-    outline: none;
-    transition: all 0.3s ease;
-    text-align: center;
-}
-
-input:focus {
-    border-color: #00ff00;
-    box-shadow: 0 0 10px linear-gradient(145deg, #00eaff, #00ff85);
-}
-
-div {
-    color: linear-gradient(145deg, #00eaff, #00ff85);
-    font-size: 0.9rem;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(45deg, #00ff85, #00b3b3);
-    color: #1d1f21;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-button:disabled {
-    background-color: #444;
-    cursor: not-allowed;
-}
-
-button:hover {
-    background: linear-gradient(45deg, #00ff85, #00b3b3);
-    box-shadow: inset 0 0 5px #00ff85, inset 0 0 10px #00ff85, inset 0 0 15px #00ff85;
-    transform: scale(1.05);
-}
-
-
-h1, h2, h3, label {
-    font-display: swap;
-    color: #00ff85;
-}
-
-.container {
-    padding: 30px;
-    margin: 20px;
+/* Main container */
+.edit-profile-container {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.icon {
-    color: #00ff00;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background-color: #121212;
+    font-family: 'Roboto', Arial, sans-serif;
+  }
+  
+  /* Card styling */
+  .form-card {
+    width: 100%;
+    max-width: 550px;
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Card header */
+  .card-header {
+    background: linear-gradient(135deg, rgba(0, 234, 255, 0.1), rgba(0, 255, 133, 0.1));
+    padding: 30px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 234, 255, 0.2);
+    position: relative;
+  }
+  
+  .header-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00eaff, #00ff85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 5px 15px rgba(0, 255, 133, 0.4);
+  }
+  
+  .header-icon i {
+    font-size: 30px;
+    color: #121212;
+  }
+  
+  .card-header h2 {
+    color: white;
+    font-size: 1.8rem;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+  }
+  
+  .subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  form {
+    padding: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 25px;
+    position: relative;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  
+  .icon {
+    color: #00eaff;
     margin-right: 8px;
-}
-
-@media (max-width: 768px) {
-    form {
-        margin: 20px;
-        padding: 15px;
+    width: 16px;
+    text-align: center;
+  }
+  
+  .input-container {
+    position: relative;
+  }
+  
+  input {
+    width: 90%;
+    padding: 12px 15px;
+    background-color: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #00eaff;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 234, 255, 0.2);
+  }
+  
+  input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  
+  .input-highlight {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: linear-gradient(90deg, #00eaff, #00ff85);
+    transition: width 0.3s ease;
+  }
+  
+  input:focus + .input-highlight {
+    width: 100%;
+  }
+  
+  /* Error message styling */
+  .error-message {
+    color: #ff5555;
+    font-size: 0.85rem;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .error-message i {
+    margin-right: 6px;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Button styling */
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  button {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn-submit {
+    background: linear-gradient(90deg, #00eaff, #00ff85);
+    color: #121212;
+    box-shadow: 0 4px 15px rgba(0, 255, 133, 0.4);
+  }
+  
+  .btn-submit:hover:not([disabled]) {
+    box-shadow: 0 6px 20px rgba(0, 255, 133, 0.6);
+    transform: translateY(-2px);
+  }
+  
+  .btn-submit:active:not([disabled]) {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 255, 133, 0.4);
+  }
+  
+  .btn-submit[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .btn-submit i {
+    margin-right: 8px;
+  }
+  
+  .btn-cancel {
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .btn-cancel:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    .form-card {
+      border-radius: 0;
     }
-    input, button {
-        padding: 8px;
+    
+    .form-actions {
+      flex-direction: column-reverse;
     }
-}
+    
+    .btn-submit, .btn-cancel {
+      width: 100%;
+    }
+    
+    .card-header h2 {
+      font-size: 1.5rem;
+    }
+    
+    .header-icon {
+      width: 60px;
+      height: 60px;
+    }
+  }

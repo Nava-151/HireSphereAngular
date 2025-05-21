@@ -1,0 +1,27 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over" class="sidenav" [opened]="false">
+    <button mat-button (click)="navigate('/')">Home</button>
+    <button mat-button (click)="navigate('/about')">About</button>
+    <button mat-button (click)="navigate('/update')">Update</button>
+  </mat-sidenav>
+
+  <mat-toolbar color="primary" class="header">
+    <button mat-icon-button (click)="sidenav.toggle()" class="burger-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="hiresphere-title">
+      <button style="background: none;" mat-button (click)="navigate('/')">
+        <mat-icon>public</mat-icon>
+      </button>
+      HireSphere
+    </span>
+
+    <span class="spacer"></span>
+
+    <div class="nav-buttons">
+      <button mat-button (click)="navigate('/')">Home</button>
+      <button mat-button (click)="navigateToAbout()">About</button>
+      <button mat-button (click)="navigate('/update')">Update</button>
+    </div>
+  </mat-toolbar>
+</mat-sidenav-container>

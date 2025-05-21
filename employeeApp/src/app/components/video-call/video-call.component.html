@@ -1,43 +1,114 @@
-<mat-card class="video-call-card">
+<!-- <mat-card class="video-call-card">
+  <mat-card-header>
+    <mat-card-title>Video Call</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="card-content">
+    <div class="video-container" [class.callStarted]="callStarted">
+      <video #localVideo id="localVideo" autoplay muted playsinline></video>
+      <video #remoteVideo id="remoteVideo" autoplay playsinline></video>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions class="controls">
+    <button mat-raised-button color="primary" (click)="invite()">
+      📨 send invitation
+    </button>
+
+    <button mat-raised-button color="accent" (click)="call()" [disabled]="callStarted">
+      📞 begin 
+    </button>
+
+    @if (callStarted) {
+      <button mat-stroked-button color="primary" (click)="toggleMute()">
+        {{ isMuted ? '🎙️ turn on' : '🔇 mute' }}
+      </button>
+
+      <button mat-stroked-button color="primary" (click)="toggleVideo()">
+        {{ isVideoOff ? '📹 turn on' : '📷 turn off' }}
+      </button>
+
+      <button mat-raised-button color="warn" (click)="endCall()">
+        ❌ leave
+      </button>
+    }
+  </mat-card-actions>
+</mat-card> -->
+<div class="video-call-container">
+  <mat-card class="video-call-card">
     <mat-card-header>
-      <mat-card-title>שיחת וידאו</mat-card-title>
+      <div class="header-content">
+        <mat-card-title>
+          <i class="call-icon fas fa-video"></i> Video Interview
+        </mat-card-title>
+        <div class="connection-status" [class.connected]="callStarted">
+          <span class="status-dot"></span>
+          <span class="status-text">{{ callStarted ? 'Connected' : 'Waiting for connection' }}</span>
+        </div>
+      </div>
     </mat-card-header>
-  
-    <mat-card-content>
-      <div class="video-container">
-        <video #localVideo autoplay muted playsinline></video>
-        <video #remoteVideo autoplay playsinline></video>
+
+    <mat-card-content class="card-content">
+      <div class="video-grid" [class.call-active]="callStarted">
+        <div class="video-wrapper remote-video-wrapper">
+          <video #remoteVideo id="remoteVideo" autoplay playsinline></video>
+          @if(!callStarted) {
+            <div class="waiting-indicator">
+              <div class="spinner"></div>
+              <p>Waiting for participant to join...</p>
+            </div>
+          }
+          <div class="participant-label">Participant</div>
+        </div>
+        
+        <div class="video-wrapper local-video-wrapper">
+          <video #localVideo id="localVideo" autoplay muted playsinline></video>
+          <div class="video-status-indicators">
+            <span class="status-indicator" [class.active]="isMuted">
+              <i class="fas fa-microphone-slash"></i>
+            </span>
+            <span class="status-indicator" [class.active]="isVideoOff">
+              <i class="fas fa-video-slash"></i>
+            </span>
+          </div>
+          <div class="participant-label">You</div>
+        </div>
       </div>
     </mat-card-content>
-  
+
     <mat-card-actions class="controls">
-      <button mat-raised-button color="primary" (click)="invite()">
-        📨 שלח הזמנה
-      </button>
-  
-      <button mat-raised-button color="accent" (click)="call()" [disabled]="callStarted">
-        📞 התחל שיחה
-      </button>
-  
-      @if (callStarted) {
-        <button mat-stroked-button color="primary" (click)="toggleMute()">
-          {{ isMuted ? '🎙️ הפעל מיקרופון' : '🔇 השתק' }}
+      <div class="control-buttons">
+        <button class="control-btn invite-btn" (click)="invite()">
+          <div class="btn-icon"><i class="fas fa-paper-plane"></i></div>
+          <span>Send Invitation</span>
         </button>
-  
-        <button mat-stroked-button color="primary" (click)="toggleVideo()">
-          {{ isVideoOff ? '📹 הפעל מצלמה' : '📷 כבה מצלמה' }}
+
+        <button class="control-btn call-btn" (click)="call()" [disabled]="callStarted">
+          <div class="btn-icon"><i class="fas fa-phone-alt"></i></div>
+          <span>Start Call</span>
         </button>
-  
-        <button mat-raised-button color="warn" (click)="endCall()">
-          ❌ סיים שיחה
-        </button>
-      }
+
+        @if (callStarted) {
+          <button class="control-btn toggle-btn" [class.active]="isMuted" (click)="toggleMute()">
+            <div class="btn-icon">
+              <i class="fas" [class.fa-microphone]="!isMuted" [class.fa-microphone-slash]="isMuted"></i>
+            </div>
+            <span>{{ isMuted ? 'Unmute' : 'Mute' }}</span>
+          </button>
+
+          <button class="control-btn toggle-btn" [class.active]="isVideoOff" (click)="toggleVideo()">
+            <div class="btn-icon">
+              <i class="fas" [class.fa-video]="!isVideoOff" [class.fa-video-slash]="isVideoOff"></i>
+            </div>
+            <span>{{ isVideoOff ? 'Show Video' : 'Hide Video' }}</span>
+          </button>
+
+          <button class="control-btn end-btn" (click)="endCall()">
+            <div class="btn-icon"><i class="fas fa-phone-slash"></i></div>
+            <span>End Call</span>
+          </button>
+        }
+      </div>
     </mat-card-actions>
-  
-    @if (callStarted) {
-      <mat-card-footer class="timer">
-        <!-- 🕒 זמן שיחה: {{ formatTime(timer) }} -->
-      </mat-card-footer>
-    }
   </mat-card>
-  
+</div>

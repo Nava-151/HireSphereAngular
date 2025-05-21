@@ -16,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class EditCandidateComponent {
 
   userForm: FormGroup;
-  userId: number = +(localStorage.getItem('id')||"0"); 
+  userId: number = +(sessionStorage.getItem('id')||"0"); 
 
   constructor(private fb: FormBuilder, private userService: UserService) {
     this.userForm = this.fb.group({
@@ -39,7 +39,6 @@ export class EditCandidateComponent {
         userData.passwordHash = userData.passwordHash; // This is just a placeholder for the hash
       }
 
-      // Call the service to update the user
       this.userService.updateUser(this.userId, userData).subscribe({
         next: (response) => {
           console.log('User updated successfully:', response);

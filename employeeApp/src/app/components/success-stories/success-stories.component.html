@@ -1,9 +1,56 @@
-<div class="stories-container">
-  @for (story of successStories; track $index) {
-    <div class="story-card">
-      <h3>{{ story.name }}</h3>
-      <h4>{{ story.company }}</h4>
-      <p>{{ story.feedback }}</p>
-    </div>
-  }
-</div>
+<section class="success-stories-section">
+  <div class="section-header">
+    <h2 class="section-title">Success <span class="gradient-text">Stories</span></h2>
+    <p class="section-subtitle">Hear from employers who found their perfect candidates</p>
+  </div>
+
+  <div class="stories-container">
+    @for (story of successStories; track $index) {
+      <mat-card class="story-card">
+        <div class="card-header">
+          <!-- <div class="company-logo"> -->
+            <!-- <img [src]="getLogoUrl($index)" [alt]="story.company + ' logo'"> -->
+          <!-- </div> -->
+          <div class="company-info">
+            <h3>{{ story.company }}</h3>
+            <div class="rating">
+              @for (star of getStarRating(story.rating); track $index) {
+                <mat-icon class="star-icon">star</mat-icon>
+              }
+            </div>
+          </div>
+        </div>
+        
+        <mat-card-content>
+          <div class="quote-icon">
+            <mat-icon>format_quote</mat-icon>
+          </div>
+          
+          <p class="feedback">{{ story.feedback }}</p>
+          
+          <div class="hiring-details">
+            <div class="detail-item">
+              <mat-icon>person</mat-icon>
+              <span>{{ story.candidateRole }}</span>
+            </div>
+            <div class="detail-item">
+              <mat-icon>schedule</mat-icon>
+              <span>Hired in {{ story.timeToHire }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+        
+        <mat-card-footer>
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h4>{{ story.name }}</h4>
+              <p>{{ story.position }}</p>
+            </div>
+          </div>
+        </mat-card-footer>
+      </mat-card>
+    }
+  </div>
+  
+
+</section>

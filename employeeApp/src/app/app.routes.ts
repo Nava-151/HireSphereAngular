@@ -6,14 +6,16 @@ import { EditCandidateComponent } from './components/candidate/edit-candidate/ed
 import { CandidatesComponent } from './components/candidate/candidates/candidates.component';
 import { authGuard } from './auth.guard';
 import { VideoCallComponent } from './components/video-call/video-call.component';
+import { AboutComponent } from './components/about/about.component';
 
 export const routes: Routes = [
-    { path: '', component: HomePageComponent },
+    { path: '', component: HomePageComponent, children:[{path:'about', component:AboutComponent}] },
     { path: 'login', component: LoginModalComponent },
     { path: 'register', component: RegisterModalComponent },
     { path: 'candidates', component: CandidatesComponent, canActivate: [authGuard] },
     {path: 'update', component: EditCandidateComponent, canActivate: [authGuard] },
     {path: 'interview', component: VideoCallComponent },
+    {path: 'video-call/:id', component: VideoCallComponent },
 
 ];
 
