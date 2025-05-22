@@ -58,6 +58,7 @@ export class VideoCallService {
   }
 
   inviteToInterview(targetUserId: string, callerUserId: string) {
+    
     console.log(`📤 Sending interview invite from ${callerUserId} to ${targetUserId}`);
     this.hubConnection.invoke('InviteToInterview', targetUserId, callerUserId)
       .then(() => {

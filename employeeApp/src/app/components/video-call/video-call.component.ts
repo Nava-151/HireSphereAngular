@@ -117,7 +117,9 @@ export class VideoCallComponent implements OnInit {
   invite() {
     console.log("inside invite");
     
-    const callerUserId = sessionStorage.getItem('userId')+""; 
+    const callerUserId = sessionStorage.getItem('id')+"";
+    console.log("userId is:", callerUserId);
+     
     const targetUserId = this.candidateId;    
     this.videoCallService.inviteToInterview(targetUserId, callerUserId);
   }
