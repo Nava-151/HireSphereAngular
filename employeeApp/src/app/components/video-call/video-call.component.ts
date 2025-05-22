@@ -25,7 +25,9 @@ export class VideoCallComponent implements OnInit {
   async ngOnInit() {
     console.log("in ngOnInit video call service"); 
     const userId = sessionStorage.getItem('id')+''; 
-   await this.videoCallService.connect(userId);
+    console.log("userId is:", userId);
+    
+     await this.videoCallService.connect(userId);
     this.candidateId= this.route.snapshot.paramMap.get('id')||'';
 
     this.videoCallService.onInterviewInvite = async (callerId: string) => {
