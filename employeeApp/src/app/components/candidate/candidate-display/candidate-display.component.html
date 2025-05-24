@@ -17,6 +17,7 @@
 
       <hr>
       <br>
+      <hr>
 
       <h2>Resume Actions</h2>
       <p>Review this candidate's resume and schedule an interview</p>
@@ -35,6 +36,11 @@
         <button class="btn btn-interview" (click)="inviteToInterview(userDetails.candidateId)">
           <mat-icon>video_call</mat-icon>
            Interview
+        </button>
+
+        <button class="btn btn-interview" (click)="sendMail(userDetails.candidate.email)">
+          <mat-icon>video_call</mat-icon>
+           Send date for Interview
         </button>
       </div>
 

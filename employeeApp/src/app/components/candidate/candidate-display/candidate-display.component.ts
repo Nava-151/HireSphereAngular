@@ -16,6 +16,9 @@ import { Router } from '@angular/router';
   styleUrl: './candidate-display.component.css'
 })
 export class CandidateDisplayComponent  {
+sendMail(arg0: string) {
+throw new Error('Method not implemented.');
+}
 
   watch = (id: number) => {
     console.log("in watch compo");

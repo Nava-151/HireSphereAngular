@@ -70,10 +70,29 @@
 
 
 
-@defer (on idle) {
+<!-- @defer (on idle) {
     @for (userDetail of candidatesList$ | async; track userDetail.id) {
       <app-candidate-display [userDetails]="userDetail"></app-candidate-display>
     }
+} @loading {
+  <div class="spinner-container">
+    <mat-progress-spinner
+      color="primary"
+      mode="indeterminate"
+      diameter="50">
+    </mat-progress-spinner>
+    <div>Searching for candidates...</div>
+  </div>
+} @error {
+  <div class="error-message">
+    <h3>Oops! Something went wrong</h3>
+    <p>Failed to load candidates. Please try again later.</p>
+  </div>
+} -->
+@defer (when candidatesList$ ;  on idle) {
+  @for (userDetail of candidatesList$ | async; track userDetail.id) {
+    <app-candidate-display [userDetails]="userDetail"></app-candidate-display>
+  }
 } @loading {
   <div class="spinner-container">
     <mat-progress-spinner
