@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Schedule Interview</h2>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Select Date</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="date" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Select Time</mat-label>
+    <input matInput type="time" [(ngModel)]="time" />
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onConfirm()" [disabled]="!date || !time">Send</button>
+</div>

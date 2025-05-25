@@ -23,7 +23,7 @@ export class EditCandidateComponent {
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: [''],
-      passwordHash: [null],  
+      // passwordHash: [null],  
     });
   }
 
@@ -35,9 +35,6 @@ export class EditCandidateComponent {
     if (this.userForm.valid) {
       const userData: UserUpdateDetails = this.userForm.value;
 
-      if (userData.passwordHash) {
-        userData.passwordHash = userData.passwordHash; // This is just a placeholder for the hash
-      }
 
       this.userService.updateUser(this.userId, userData).subscribe({
         next: (response) => {

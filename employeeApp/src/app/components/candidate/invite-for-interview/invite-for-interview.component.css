@@ -1,0 +1,50 @@
+:host {
+    --neon-green: #39ff14;
+    --cyan: #00b7b7; /* טיפה כהה יותר כדי להתאים לרקע בהיר */
+    --light-bg: #ffffff;
+    --text-color: #222;
+  
+    display: block;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    padding: 1rem;
+    border-radius: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  h2 {
+    color: var(--cyan);
+    margin-bottom: 1rem;
+  }
+  
+  .full-width {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: #f2f2f2;
+    border-radius: 6px;
+  }
+  
+  .mat-form-field-label {
+    color: var(--cyan) !important;
+  }
+  
+  .mat-input-element {
+    color: var(--text-color);
+  }
+  
+  button.mat-button {
+    color: var(--cyan);
+  }
+  
+  button.mat-raised-button.mat-primary {
+    background: linear-gradient(45deg, var(--neon-green), var(--cyan));
+    color: #000;
+  }
+  
+  button.mat-raised-button.mat-primary:hover {
+    background: linear-gradient(45deg, var(--cyan), var(--neon-green));
+  }
+  

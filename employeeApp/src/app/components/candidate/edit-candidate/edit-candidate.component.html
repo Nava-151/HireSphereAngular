@@ -51,20 +51,6 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="password">
-          <i class="fas fa-lock icon"></i> New Password
-        </label>
-        <div class="input-container">
-          <input id="password" formControlName="passwordHash" type="password" placeholder="Enter new password (leave blank to keep current)" />
-          <div class="input-highlight"></div>
-        </div>
-        @if (userForm.get('password')?.invalid && userForm.get('password')?.touched) {
-          <div class="error-message">
-            <i class="fas fa-exclamation-circle"></i> Password is required if updating.
-          </div>
-        }
-      </div>
 
       <div class="form-actions">
         <button type="button" class="btn-cancel">Cancel</button>

@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatSelectModule } from '@angular/material/select';
+import {  MatSelectModule } from '@angular/material/select';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -27,7 +27,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatMenuModule,
     MatCheckboxModule,
     CommonModule,
-    MatProgressSpinnerModule],
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './candidates.component.html',
   styleUrl: './candidates.component.css'
 })
@@ -42,7 +43,7 @@ export class CandidatesComponent {
   paramsList: any[] = [
     { id: 0, filter: "Experience", icon: "work" },
     { id: 2, filter: "Languages", icon: "language" },
-    { id: 3, filter: "English", icon: "translate" },
+    { id: 3, filter: "EnglishLevel", icon: "translate" },
     { id: 4, filter: "Education", icon: "school" },
     { id: 5, filter: "Mark", icon: "bookmark" }
 
@@ -92,11 +93,7 @@ export class CandidatesComponent {
     }
     console.log("Final Filter Parameters:", this.paramForFilter);
 
-    this.resumeDetailsService.sendForFilter(this.paramForFilter).subscribe(data => {
-      console.log(data);
-      this.candidatesList$ = data;
-    });
-
+    this.resumeDetailsService.sendForFilter(this.paramForFilter).subscribe();
   }
 
 }

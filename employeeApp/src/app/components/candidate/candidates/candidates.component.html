@@ -13,7 +13,7 @@
     }
   </div>
 
-  <div class="filter-inputs" *ngIf="selectedFilter">
+  <div class="filter-inputs">
     @if (selectedFilter === 'Experience') {
       <div>
         <label>Years of Experience:</label>
@@ -39,7 +39,7 @@
       </div>
     }
 
-    @if (selectedFilter === 'English') {
+    @if (selectedFilter === 'EnglishLevel') {
       <div>
         <label>Minimum English Level:</label>
         <mat-radio-group [(ngModel)]="englishLevel">
@@ -70,11 +70,12 @@
 
 
 
-<!-- @defer (on idle) {
-    @for (userDetail of candidatesList$ | async; track userDetail.id) {
-      <app-candidate-display [userDetails]="userDetail"></app-candidate-display>
-    }
-} @loading {
+
+<!-- @defer (when candidatesList$ ;  on idle) { -->
+  @for (userDetail of candidatesList$ | async; track userDetail.id) {
+    <app-candidate-display [userDetails]="userDetail"></app-candidate-display>
+  }
+<!-- } @loading {
   <div class="spinner-container">
     <mat-progress-spinner
       color="primary"
@@ -89,22 +90,3 @@
     <p>Failed to load candidates. Please try again later.</p>
   </div>
 } -->
-@defer (when candidatesList$ ;  on idle) {
-  @for (userDetail of candidatesList$ | async; track userDetail.id) {
-    <app-candidate-display [userDetails]="userDetail"></app-candidate-display>
-  }
-} @loading {
-  <div class="spinner-container">
-    <mat-progress-spinner
-      color="primary"
-      mode="indeterminate"
-      diameter="50">
-    </mat-progress-spinner>
-    <div>Searching for candidates...</div>
-  </div>
-} @error {
-  <div class="error-message">
-    <h3>Oops! Something went wrong</h3>
-    <p>Failed to load candidates. Please try again later.</p>
-  </div>
-}
