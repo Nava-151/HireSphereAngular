@@ -2,7 +2,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, timer } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { User } from '../models/user';
 import { UserResumeDetails } from '../models/UserResumeDetails';
 import { Filter } from '../models/filter';
@@ -35,8 +35,12 @@ export class ResumeDetailsService {
     return this.http.get<UserResumeDetails[]>(`${this.apiUrl}/data`)
   }
 
-  sendForFilter(filters: Filter) {
-    return this.http.post<any>(`${this.apiUrl}/data/filter`, filters);
+
+  sendForFilter(filters: Filter): Observable<UserResumeDetails[]> {
+    return this.http.post<UserResumeDetails[]>(`${this.apiUrl}/data/filter`, filters).pipe(
+      tap(results => {this.analysisResultsSubject.next(results); console.log(results);
+      })
+    );
   }
 
   updateMark(mark: number) {
