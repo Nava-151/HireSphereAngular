@@ -197,8 +197,16 @@ export class VideoCallComponent implements OnInit {
 
   async startCall() {
     this.callStarted = true;
-    this.peerConnection = new RTCPeerConnection();
-
+    this.peerConnection = new RTCPeerConnection({
+      iceServers: [
+        { urls: 'stun:stun.l.google.com:19302' },
+        {
+          urls: 'turn:numb.viagenie.ca:3478',
+          username: 'guest',
+          credential: 'guest'
+        }
+      ]
+    });
     this.videoCallService.onIceCandidate = async (_, candidate) => {
       if (!this.peerConnection) return;
       try {
