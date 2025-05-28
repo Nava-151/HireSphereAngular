@@ -1,4 +1,3 @@
-
 <div class="video-call-container">
   <mat-card class="video-call-card">
     <mat-card-header>
@@ -18,14 +17,14 @@
         <div class="video-wrapper remote-video-wrapper">
           <video #remoteVideo id="remoteVideo" autoplay playsinline></video>
           @if(!callStarted) {
-            <div class="waiting-indicator">
-              <div class="spinner"></div>
-              <p>Waiting for participant to join...</p>
-            </div>
+          <div class="waiting-indicator">
+            <div class="spinner"></div>
+            <p>Waiting for participant to join...</p>
+          </div>
           }
           <div class="participant-label">Participant</div>
         </div>
-        
+
         <div class="video-wrapper local-video-wrapper">
           <video #localVideo id="localVideo" autoplay muted playsinline></video>
           <div class="video-status-indicators">
@@ -54,24 +53,24 @@
         </button>
 
         @if (callStarted) {
-          <button class="control-btn toggle-btn" [class.active]="isMuted" (click)="toggleMute()">
-            <div class="btn-icon">
-              <i class="fas" [class.fa-microphone]="!isMuted" [class.fa-microphone-slash]="isMuted"></i>
-            </div>
-            <span>{{ isMuted ? 'Unmute' : 'Mute' }}</span>
-          </button>
+        <button class="control-btn toggle-btn" [class.active]="isMuted" (click)="toggleMute()">
+          <div class="btn-icon">
+            <i class="fas" [class.fa-microphone]="!isMuted" [class.fa-microphone-slash]="isMuted"></i>
+          </div>
+          <span>{{ isMuted ? 'Unmute' : 'Mute' }}</span>
+        </button>
 
-          <button class="control-btn toggle-btn" [class.active]="isVideoOff" (click)="toggleVideo()">
-            <div class="btn-icon">
-              <i class="fas" [class.fa-video]="!isVideoOff" [class.fa-video-slash]="isVideoOff"></i>
-            </div>
-            <span>{{ isVideoOff ? 'Show Video' : 'Hide Video' }}</span>
-          </button>
+        <button class="control-btn toggle-btn" [class.active]="isVideoOff" (click)="toggleVideo()">
+          <div class="btn-icon">
+            <i class="fas" [class.fa-video]="!isVideoOff" [class.fa-video-slash]="isVideoOff"></i>
+          </div>
+          <span>{{ isVideoOff ? 'Show Video' : 'Hide Video' }}</span>
+        </button>
 
-          <button class="control-btn end-btn" (click)="endCall()">
-            <div class="btn-icon"><i class="fas fa-phone-slash"></i></div>
-            <span>End Call</span>
-          </button>
+        <button class="control-btn end-btn" (click)="endCall()">
+          <div class="btn-icon"><i class="fas fa-phone-slash"></i></div>
+          <span>End Call</span>
+        </button>
         }
       </div>
     </mat-card-actions>

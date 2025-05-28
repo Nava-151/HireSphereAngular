@@ -211,6 +211,12 @@ body {
   color: #00ff85;
   font-weight: bold;
 }
+.candidates-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* רספונסיבי */
+  gap: 20px; /* רווח בין מועמדים */
+  padding: 20px;
+}
 
 /* Make the filter buttons and inputs responsive */
 @media (max-width: 768px) {

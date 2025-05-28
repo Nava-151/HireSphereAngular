@@ -40,7 +40,7 @@ export class CandidateDisplayComponent {
       if (response) {
         window.open(response, '_blank');
       }
-      else{
+      else {
         console.log(response);
       }
     });
@@ -76,7 +76,7 @@ export class CandidateDisplayComponent {
 
   sendMailWithDate(email: string, date: string, time: string) {
     console.log(email);
-    
+
     const serviceID = 'service_r57exjl';
     const templateID = 'template_mdpmcza';
     const publicKey = 'dNeV7WLUZjWN-Sp_T';

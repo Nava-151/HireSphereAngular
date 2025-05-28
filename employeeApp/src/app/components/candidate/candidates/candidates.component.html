@@ -1,65 +1,64 @@
 <header class="header-container">
   <h2 class="filter-section-title">Find the <span>Perfect Candidate</span> for Your Team</h2>
-  
+
   <div class="filter-container">
     @for (filter of paramsList; track filter.id) {
-      <button mat-raised-button 
-        class="filter-button" 
-        [class.active]="selectedFilter === filter.filter"
-        (click)="toggleFilter(filter)">
-        <span class="material-icons">{{ filter.icon }}</span>
-        {{ filter.filter }}
-      </button>
+    <button mat-raised-button class="filter-button" [class.active]="selectedFilter === filter.filter"
+      (click)="toggleFilter(filter)">
+      <span class="material-icons">{{ filter.icon }}</span>
+      {{ filter.filter }}
+    </button>
     }
   </div>
 
   <div class="filter-inputs">
     @if (selectedFilter === 'Experience') {
-      <div>
-        <label>Years of Experience:</label>
-        <input matInput type="number" [(ngModel)]="experienceYears" placeholder="Enter minimum years required" min="0" />
-      </div>
+    <div>
+      <label>Years of Experience:</label>
+      <input matInput type="number" [(ngModel)]="experienceYears" placeholder="Enter minimum years required" min="0" />
+    </div>
     }
 
     @if(selectedFilter === 'Mark') {
-      <div>
-        <label>Minimum Score:</label>
-        <input matInput type="number" [(ngModel)]="testMark" placeholder="Enter the minimum mark required" min="0" max="100" />
-      </div>
+    <div>
+      <label>Minimum Score:</label>
+      <input matInput type="number" [(ngModel)]="testMark" placeholder="Enter the minimum mark required" min="0"
+        max="100" />
+    </div>
     }
-    
+
     @if (selectedFilter === 'Languages') {
-      <div>
-        <label>Programming Languages:</label>
-        <mat-select multiple [(ngModel)]="selectedLanguages" placeholder="Select required languages">
-          @for (lang of programmingLanguages; track lang) {
-            <mat-option [value]="lang">{{ lang }}</mat-option>
-          }
-        </mat-select>
-      </div>
+    <div>
+      <label>Programming Languages:</label>
+      <mat-select multiple [(ngModel)]="selectedLanguages" placeholder="Select required languages">
+        @for (lang of programmingLanguages; track lang) {
+        <mat-option [value]="lang">{{ lang }}</mat-option>
+        }
+      </mat-select>
+    </div>
     }
 
     @if (selectedFilter === 'EnglishLevel') {
-      <div>
-        <label>Minimum English Level:</label>
-        <mat-radio-group [(ngModel)]="englishLevel">
-          <mat-radio-button value="Beginner">Beginner</mat-radio-button>
-          <mat-radio-button value="Intermediate">Intermediate</mat-radio-button>
-          <mat-radio-button value="Advanced">Advanced</mat-radio-button>
-          <mat-radio-button value="Fluent">Fluent</mat-radio-button>
-        </mat-radio-group>
-      </div>
+    <div>
+      <label>Minimum English Level:</label>
+      <mat-radio-group [(ngModel)]="englishLevel">
+        <mat-radio-button value="Beginner">Beginner</mat-radio-button>
+        <mat-radio-button value="Intermediate">Intermediate</mat-radio-button>
+        <mat-radio-button value="Advanced">Advanced</mat-radio-button>
+        <mat-radio-button value="Fluent">Fluent</mat-radio-button>
+      </mat-radio-group>
+    </div>
     }
 
     @if (selectedFilter === 'Education') {
-      <div>
-        <label>Education Level:</label>
-        <mat-select [(ngModel)]="educationLevel" placeholder="Select education level">
-          <mat-option value="College">College</mat-option>
-          <mat-option value="University">University</mat-option>
-          <mat-option value="Another">Other</mat-option>
-        </mat-select>
-      </div>
+    <div>
+      <label>Education Level:</label>
+      <mat-select [(ngModel)]="educationLevel" placeholder="Select education level">
+        <mat-option value="College">College</mat-option>
+        <mat-option value="University">University</mat-option>
+        <mat-option value="Another">Other</mat-option>
+      </mat-select>
+    </div>
     }
   </div>
   <button mat-raised-button class="search-button" (click)="startFilter()">
@@ -69,24 +68,8 @@
 </header>
 
 
-
-
-<!-- @defer (when candidatesList$ ;  on idle) { -->
-  @for (userDetail of candidatesList$ | async; track userDetail.id) {
-    <app-candidate-display [userDetails]="userDetail"></app-candidate-display>
-  }
-<!-- } @loading {
-  <div class="spinner-container">
-    <mat-progress-spinner
-      color="primary"
-      mode="indeterminate"
-      diameter="50">
-    </mat-progress-spinner>
-    <div>Searching for candidates...</div>
-  </div>
-} @error {
-  <div class="error-message">
-    <h3>Oops! Something went wrong</h3>
-    <p>Failed to load candidates. Please try again later.</p>
-  </div>
-} -->
+<div class="candidate-container">
+@for (userDetail of candidatesList$ | async; track userDetail.id) {
+<app-candidate-display [userDetails]="userDetail"></app-candidate-display>
+}
+</div>
