@@ -1,133 +1,362 @@
-
-mat-form-field {
-    width: 150%;
-    margin-bottom: 15px;
-}
-
-.mat-form-field-outline {
-    border-color: #00eaff !important;
-}
-
-.mat-form-field-label {
-    color: #00eaff !important;
-}
-
-.mat-input-element {
-    color: white !important;
-}
-
-.button-group {
+/* Register Modal Overlay */
+.register-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
     display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-}
-
-.turquoise-button {
-    background: linear-gradient(145deg, #00eaff, #00ff85);
-    color: black;
-    font-weight: bold;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 255, 133, 0.8);
-    padding: 10px 20px;
-    transition: all 0.3s ease-in-out;
-}
-
-.turquoise-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(0, 255, 133, 1);
-}
-
-.disabled-button{
-    background-color: gray !important;
-    color: black !important;
-
-}
-
-.turquoise-button:disabled {
-    background-color: #ccc;
-    color: #666;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  /* Modal Content Container */
+  .register-modal-content {
+    background: #f5f7fa;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 420px;
+    max-height: 90vh;
+    overflow: hidden;
+    position: relative;
+    animation: slideInUp 0.4s ease-out;
+  }
+  
+  /* Animated Gradient Top Bar */
+  .gradient-bar {
+    height: 6px;
+    background: linear-gradient(90deg, 
+      #00f5ff 0%, 
+      #ff6b6b 25%, 
+      #4ecdc4 50%, 
+      #45b7d1 75%, 
+      #96ceb4 100%);
+    background-size: 400% 100%;
+    animation: gradientShift 3s ease-in-out infinite;
+  }
+  
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Modal Body */
+  .modal-body {
+    padding: 40px 32px 32px;
+  }
+  
+  /* Modal Title */
+  .modal-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2d3748;
+    text-align: center;
+    margin: 0 0 32px 0;
+    letter-spacing: -0.5px;
+  }
+  
+  /* Form */
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  /* Input Group */
+  .input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 4px 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+  
+  .input-group:focus-within {
+    border-color: #00f5ff;
+    box-shadow: 0 4px 12px rgba(0, 245, 255, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  .input-group.error {
+    border-color: #ff6b6b;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2);
+  }
+  
+  /* Input Icon */
+  .input-icon {
+    color: #a0aec0;
+    font-size: 20px;
+    margin-right: 12px;
+    transition: color 0.3s ease;
+  }
+  
+  .input-group:focus-within .input-icon {
+    color: #00f5ff;
+  }
+  
+  .input-group.error .input-icon {
+    color: #ff6b6b;
+  }
+  
+  /* Toggle Password Icon */
+  .toggle-password-icon {
+    color: #a0aec0;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .toggle-password-icon:hover {
+    color: #00f5ff;
+  }
+  
+  /* Input Wrapper */
+  .input-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Input Label */
+  .input-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #718096;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Custom Input */
+  .custom-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    color: #2d3748;
+    padding: 8px 0;
+    font-weight: 500;
+  }
+  
+  .custom-input::placeholder {
+    color: #a0aec0;
+    font-weight: 400;
+  }
+  
+  .custom-input.error {
+    color: #ff6b6b;
+  }
+  
+  /* Error Message */
+  .error-message {
+    color: #ff6b6b;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: -16px;
+    margin-bottom: 8px;
+    margin-left: 48px;
+    animation: shake 0.5s ease-in-out;
+  }
+  
+  /* Button Group */
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  
+  /* Sign Up Button */
+  .sign-up-btn {
+        background: linear-gradient(135deg, #00f5ff 0%, #00ff85 100%) !important;
+        color: #333 !important;
+        font-weight: 700 !important;
+        border-radius: 12px !important;
+        padding: 12px 24px !important;
+        border: none !important;
+        box-shadow: 0 6px 20px rgba(0, 245, 255, 0.4);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        position: relative;
+        overflow: hidden;
+        flex: 1;
+  }
+  
+  .sign-up-btn:hover:not([disabled]) {
+    background: linear-gradient(135deg, #00e6f5 0%, #0099cc 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 245, 255, 0.4);
+  }
+  
+  .sign-up-btn:active:not([disabled]) {
+    transform: translateY(0);
+  }
+  
+  .sign-up-btn[disabled] {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background: #a0aec0;
+    box-shadow: none;
+  }
+  
+  .sign-up-btn.loading {
+    background: linear-gradient(135deg, #00e6f5 0%, #0099cc 100%);
+  }
+  
+  /* Cancel Button */
+  .cancel-btn {
+    background: transparent;
+    color: #718096;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .cancel-btn:hover:not([disabled]) {
+    background: #f7fafc;
+    border-color: #cbd5e0;
+    color: #4a5568;
+    transform: translateY(-1px);
+  }
+  
+  .cancel-btn[disabled] {
+    opacity: 0.5;
     cursor: not-allowed;
   }
-
-a:hover {
-    text-shadow: 0 0 10px #00ff85;
-}
-
-@keyframes fadeIn {
+  
+  /* Login Link */
+  .login-link {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 14px;
+    color: #718096;
+  }
+  
+  .login-link .link {
+    color: #00f5ff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  
+  .login-link .link:hover {
+    color: #00b4d8;
+    text-decoration: underline;
+  }
+  
+  /* Loading Spinner */
+  .spinning {
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
     from {
-        opacity: 0;
-        transform: translate(-50%, -60%);
+      opacity: 0;
     }
     to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
+      opacity: 1;
     }
-}
-
-
-
-
-  .register-modal.show {
-    display: block;
   }
   
-  .register-modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(60px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
   
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
   
-  .register-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    width: 60vw;
-    max-width: 90%;
-}
-
-.register-modal.show {
-    display: block;
-}
-
-.register-modal-content {
-    text-align: center;
-}
-
-/* שדות טקסט */
-mat-form-field {
-    width: 100%;
-    margin-bottom: 15px;
-}
-
-/* תיבת סימון */
-.checkbox-container {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-/* כפתורים */
-.button-group {
-    display: flex;
-    justify-content: space-between;
-}
-
-.turquoise-button {
-    background-color: #40E0D0 !important; /* צבע טורקיז */
-    color: white !important;
-    font-weight: bold;
-}
-
-/* אייקונים */
-mat-icon {
-    margin-right: 5px;
-}
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .register-modal-content {
+      width: 95%;
+      margin: 16px;
+      max-height: calc(100vh - 32px);
+    }
+  
+    .modal-body {
+      padding: 32px 24px 24px;
+    }
+  
+    .modal-title {
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+  
+    .register-form {
+      gap: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .register-modal-content {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      max-height: 100vh;
+    }
+  
+    .gradient-bar {
+      border-radius: 0;
+    }
+  
+    .modal-body {
+      padding: 24px 20px 20px;
+    }
+  
+    .modal-title {
+      font-size: 22px;
+    }
+  
+    .input-group {
+      padding: 4px 12px;
+    }
+  
+    .error-message {
+      margin-left: 40px;
+    }
+  }

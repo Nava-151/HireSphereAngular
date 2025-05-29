@@ -1,4 +1,4 @@
-<div class="register-modal">
+<!-- <div class="register-modal">
     <div class="register-modal-content">
         <h2>Register</h2>
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
@@ -57,5 +57,111 @@
 
             <p>Already have an account? <a routerLink="/login">Sign in</a></p>
         </form>
+    </div>
+</div> -->
+<div class="register-modal">
+    <div class="register-modal-content">
+        <!-- Animated gradient top bar -->
+        <div class="gradient-bar"></div>
+
+        <div class="modal-body">
+            <h2 class="modal-title">Create Account</h2>
+
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+                <!-- Name Field -->
+                <div class="input-group">
+                    <mat-icon class="input-icon">person</mat-icon>
+                    <div class="input-wrapper">
+                        <label class="input-label">Full Name*</label>
+                        <input type="text" formControlName="name" placeholder="Enter your full name"
+                            class="custom-input" [class.error]="submitted && registerForm.get('name')?.invalid">
+                    </div>
+                </div>
+                @if (submitted && registerForm.get('name')?.hasError('required')) {
+                <div class="error-message">Name is required</div>
+                }
+                @if (submitted && registerForm.get('name')?.hasError('minlength')) {
+                <div class="error-message">Name must be at least 2 characters</div>
+                }
+
+                <!-- Email Field -->
+                <div class="input-group">
+                    <mat-icon class="input-icon">email</mat-icon>
+                    <div class="input-wrapper">
+                        <label class="input-label">Email Address*</label>
+                        <input type="email" formControlName="email" placeholder="Enter your email" class="custom-input"
+                            [class.error]="submitted && registerForm.get('email')?.invalid">
+                    </div>
+                </div>
+                @if (submitted && registerForm.get('email')?.hasError('required')) {
+                <div class="error-message">Email is required</div>
+                }
+                @if (submitted && registerForm.get('email')?.hasError('email')) {
+                <div class="error-message">Please enter a valid email</div>
+                }
+
+                <!-- Phone Field -->
+                <div class="input-group">
+                    <mat-icon class="input-icon">phone</mat-icon>
+                    <div class="input-wrapper">
+                        <label class="input-label">Phone Number*</label>
+                        <input type="tel" formControlName="phone" placeholder="Enter your phone" class="custom-input"
+                            [class.error]="submitted && registerForm.get('phone')?.invalid">
+                    </div>
+                </div>
+                @if (submitted && registerForm.get('phone')?.hasError('required')) {
+                <div class="error-message">Phone is required</div>
+                }
+                @if (submitted && registerForm.get('phone')?.hasError('pattern')) {
+                <div class="error-message">Phone must be 9-10 digits</div>
+                }
+
+                <!-- Password Field -->
+                <div class="input-group">
+                    <mat-icon class="input-icon">lock</mat-icon>
+                    <div class="input-wrapper">
+                        <label class="input-label">Password*</label>
+                        <input type="password" formControlName="password" placeholder="Enter your password"
+                            class="custom-input" [class.error]="submitted && registerForm.get('password')?.invalid">
+                    </div>
+                    <mat-icon class="toggle-password-icon">visibility_off</mat-icon>
+                </div>
+                @if (submitted && registerForm.get('password')?.hasError('required')) {
+                <div class="error-message">Password is required</div>
+                }
+                @if (submitted && registerForm.get('password')?.hasError('minlength')) {
+                <div class="error-message">Password must be at least 6 characters</div>
+                }
+
+                <div class="button-group">
+                    <button type="submit" class="sign-up-btn" [disabled]="isLoading" [class.loading]="isLoading">
+                        @if(!isLoading) {
+                        <ng-container>
+                            <span>Sign Up</span>
+                        </ng-container>
+                        }
+                        @else{
+                        <ng-container>
+                            <mat-progress-spinner diameter="20" mode="indeterminate" color="accent"
+                                class="button-spinner" aria-label="Loading">
+                            </mat-progress-spinner>
+                        </ng-container>
+                        }
+
+                    </button>
+
+                    <button type="button" class="cancel-btn" (click)="closeModal()" [disabled]="isLoading">
+                        <mat-icon>close</mat-icon>
+                        <span>Cancel</span>
+                    </button>
+                </div>
+
+                <!-- Login Link -->
+                <div class="login-link">
+                    <span>Already have an account? </span>
+                    <a routerLink="/login" class="link">Sign in</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

@@ -1,109 +1,273 @@
 
-
-
-.login-modal-content h2 {
-  margin-top: 0;
-}
-
-.login-modal-content form {
-  margin-top: 20px;
-}
-
-
-
-.login-modal.show {
-  display: block;
-}
-
-.login-modal-content {
-  text-align: center;
-}
-
-/* שדות טקסט */
-mat-form-field {
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-/* כפתורים */
-.button-group {
-  display: flex;
-  justify-content: space-between;
-}
-
-/* עיצוב כפתור טורקיז */
-.turquoise-button {
-  background-color: #40E0D0 !important; /* צבע טורקיז */
-  color: white !important;
-  font-weight: bold;
-}
-
-/* אייקונים */
-mat-icon {
-  margin-right: 5px;
-}
 .login-modal {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
-  border-radius: 15px;
-  box-shadow: 0 0 20px ;
-  padding: 30px;
-  width: 350px;
-  text-align: center;
-  animation: fadeIn 0.3s ease-in-out;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 
+              0 0 0 1px rgba(255, 255, 255, 0.1);
+  padding: 0;
+  width: 400px;
+  overflow: hidden;
+  animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
 }
 
+.login-modal-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 40px 35px;
+  text-align: center;
+  position: relative;
+}
 
+.login-modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00f5ff, #00ff85, #ff6b6b, #4ecdc4);
+  background-size: 300% 100%;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+.login-modal-content h2 {
+  margin: 0 0 30px 0;
+  font-size: 28px;
+  font-weight: 700;
+  background: black;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  margin-top: 25px;
+}
 
 mat-form-field {
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
-.mat-form-field-outline {
-  border-color: #00eaff !important;
+::ng-deep .mat-mdc-form-field {
+  --mdc-filled-text-field-container-color: rgba(255, 255, 255, 0.8);
+  --mdc-filled-text-field-focus-active-indicator-color: #00f5ff;
+  --mdc-filled-text-field-hover-active-indicator-color: #00ff85;
+  --mdc-filled-text-field-label-text-color: #666;
+  --mdc-filled-text-field-input-text-color: #333;
 }
 
-.mat-form-field-label {
-  color: #00eaff !important;
+::ng-deep .mat-mdc-text-field-wrapper {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
-.mat-input-element {
-  color: white !important;
+::ng-deep .mat-mdc-form-field:hover .mat-mdc-text-field-wrapper {
+  box-shadow: 0 6px 20px rgba(0, 245, 255, 0.2);
+  transform: translateY(-2px);
 }
 
+::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper {
+  box-shadow: 0 8px 25px rgba(0, 245, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Input Fields */
+::ng-deep .mat-mdc-input-element {
+  color: #333 !important;
+  font-weight: 500;
+}
+
+::ng-deep .mat-mdc-form-field-focus-overlay {
+  background-color: rgba(0, 245, 255, 0.1);
+}
+
+/* Button Group */
 .button-group {
   display: flex;
+  gap: 15px;
   justify-content: space-between;
-  margin-top: 15px;
+  margin-top: 30px;
 }
 
+/* Primary Button (Sign In) */
 .turquoise-button {
-  background: linear-gradient(145deg, #00eaff, #00ff85);
-  color: black;
-  font-weight: bold;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 255, 133, 0.8);
-  padding: 10px 20px;
-  transition: all 0.3s ease-in-out;
+  background: linear-gradient(135deg, #00f5ff 0%, #00ff85 100%) !important;
+  color: #333 !important;
+  font-weight: 700 !important;
+  border-radius: 12px !important;
+  padding: 12px 24px !important;
+  border: none !important;
+  box-shadow: 0 6px 20px rgba(0, 245, 255, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
 }
 
+.turquoise-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.turquoise-button:hover::before {
+  left: 100%;
+}
 
 .turquoise-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(0, 255, 133, 1);
+  transform: translateY(-3px) !important;
+  box-shadow: 0 10px 30px rgba(0, 245, 255, 0.6) !important;
 }
 
-@keyframes fadeIn {
+.turquoise-button:active {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 15px rgba(0, 245, 255, 0.4) !important;
+}
+
+/* Close Button */
+::ng-deep .mat-mdc-button.mat-warn {
+  background: linear-gradient(135deg, #0c5778 0%, #20b1ca 100%) !important;
+  color: white !important;
+  border-radius: 12px !important;
+  padding: 12px 24px !important;
+  box-shadow: 0 6px 20px rgba(26, 111, 122, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex: 1;
+}
+
+
+  /* Cancel Button */
+  .cancel-btn {
+    background: transparent;
+    color: #718096;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .cancel-btn:hover:not([disabled]) {
+    background: #f7fafc;
+    border-color: #cbd5e0;
+    color: #4a5568;
+    transform: translateY(-1px);
+  }
+  
+  .cancel-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+::ng-deep .mat-mdc-button.mat-warn:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 10px 30,#0c5778 !important;
+}
+
+::ng-deep .mat-mdc-button.mat-warn:active {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 15px #0c5778 !important;
+}
+
+/* Icons */
+mat-icon {
+  margin-right: 8px !important;
+  font-size: 18px;
+}
+
+/* Animations */
+@keyframes modalSlideIn {
   from {
-      opacity: 0;
-      transform: translate(-50%, -60%);
+    opacity: 0;
+    transform: translate(-50%, -60%) scale(0.9);
   }
   to {
-      opacity: 1;
-      transform: translate(-50%, -50%);
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .login-modal {
+    width: 90%;
+    margin: 0 5%;
+  }
+  
+  .login-modal-content {
+    padding: 30px 25px;
+  }
+  
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .turquoise-button,
+  ::ng-deep .mat-mdc-button.mat-warn {
+    width: 100%;
+  }
+}
+
+/* Focus states for accessibility */
+.turquoise-button:focus,
+::ng-deep .mat-mdc-button.mat-warn:focus {
+  outline: 3px solid rgba(0, 245, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* Loading state (optional enhancement) */
+.turquoise-button.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.turquoise-button.loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  margin: auto;
+  border: 2px solid transparent;
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

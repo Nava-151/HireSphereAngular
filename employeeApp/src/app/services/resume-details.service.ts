@@ -22,7 +22,7 @@ export class ResumeDetailsService {
   }
 
   private startPolling() {
-    timer(0, 60000) 
+    timer(0, 1000000) 
       .pipe(
         switchMap(() => this.fetchAnalysisResults())
       )

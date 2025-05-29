@@ -1,26 +1,74 @@
+<div class="login-modal" role="dialog" aria-labelledby="login-title" aria-modal="true">
+    <div class="login-modal-content">
+        <h2 id="login-title">Welcome Back</h2>
 
-<div class="login-modal">
-  <div class="login-modal-content">
-    <h2>Login</h2>
-    <form [formGroup]="loginForm" (submit)="onSubmit()">
-        <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email" placeholder="Enter your email">
-        </mat-form-field>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
 
-        <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" formControlName="password" placeholder="Enter your password">
-        </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Email Address</mat-label>
+                <input matInput formControlName="email" placeholder="Enter your email address" type="email"
+                    autocomplete="email" required
+                    [attr.aria-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                <mat-icon matPrefix>email</mat-icon>
 
-        <div class="button-group">
-            <button mat-raised-button class="turquoise-button" type="submit">
-                <mat-icon>login</mat-icon> Sign in
-            </button>
-            <button mat-raised-button color="warn" (click)="closeModal()">
-                <mat-icon>close</mat-icon> Close
-            </button>
-        </div>
-    </form>
-  </div>
+                @if (loginForm.get('email')?.hasError('required')) {
+                <mat-error>Email is required</mat-error>
+                }
+
+                @if (loginForm.get('email')?.hasError('email')) {
+                <mat-error>Please enter a valid email address</mat-error>
+                }
+
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" placeholder="Enter your password"
+                    [type]="hidePassword ? 'password' : 'text'" autocomplete="current-password" required
+                    [attr.aria-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                <mat-icon matPrefix>lock</mat-icon>
+                <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword"
+                    [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+
+                @if (loginForm.get('password')?.hasError('required')) {
+                <mat-error>Password is required</mat-error>
+                }
+
+                @if (loginForm.get('password')?.hasError('minlength')) {
+                <mat-error>Password must be at least 2 characters long</mat-error>
+                }
+
+            </mat-form-field>
+
+            <div class="button-group">
+                <button mat-raised-button class="turquoise-button" type="submit"
+                    [disabled]="loginForm.invalid || isLoading" aria-describedby="signin-help">
+                    <mat-icon>login</mat-icon>
+                    @if(!isLoading) {
+                    <ng-container>
+                        <span>Sign In</span>
+                    </ng-container>
+                    }
+                    @else{
+                    <ng-container>
+                        <mat-progress-spinner diameter="20" mode="indeterminate" color="accent" class="button-spinner"
+                            aria-label="Loading">
+                        </mat-progress-spinner>
+                    </ng-container>
+                    }
+                </button>
+
+
+                <button mat-raised-button color="warn" type="button" (click)="closeModal()"
+                    aria-label="Close login modal" class="cancel-btn">
+                    <mat-icon>close</mat-icon>
+                    Cancel
+                </button>
+            </div>
+
+            <p>Don't have an account? <a routerLink="/register">Sign up</a></p>
+        </form>
+    </div>
 </div>
