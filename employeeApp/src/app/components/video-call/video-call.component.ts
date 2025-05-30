@@ -106,8 +106,7 @@ export class VideoCallComponent implements OnInit {
   }
 
   async call() {
-    //chabge or check it
-    this.targetConnectionId = this.candidateId; // זה צריך להגיע מהשרת או מהמשתמש
+    this.targetConnectionId = this.candidateId; 
     await this.startCall();
     const offer = await this.peerConnection.createOffer();
     await this.peerConnection.setLocalDescription(offer);
@@ -132,10 +131,8 @@ export class VideoCallComponent implements OnInit {
 
   invite() {
     console.log("[Angular] inside invite");
-
     const callerUserId = sessionStorage.getItem('id') + "";
     console.log("[Angular] userId is:", callerUserId);
-
     const targetUserId = this.candidateId;
     this.videoCallService.inviteToInterview(targetUserId, callerUserId);
   }

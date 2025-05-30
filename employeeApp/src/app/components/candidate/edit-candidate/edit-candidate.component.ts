@@ -23,7 +23,6 @@ export class EditCandidateComponent {
       fullName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: [''],
-      // passwordHash: [null],  
     });
   }
 

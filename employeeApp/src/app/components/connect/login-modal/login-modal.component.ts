@@ -48,7 +48,6 @@ export class LoginModalComponent {
   onSubmit() {
     this.submitted = true;
 
-    // Check if form is invalid and show validation error
     if (this.loginForm.invalid) {
       this.swalService.showFormValidationError();
       return;
@@ -58,7 +57,6 @@ export class LoginModalComponent {
     this.credentials.email = this.loginForm.value?.email || '';
     this.credentials.passwordHash = this.loginForm.value?.password || '';
     this.isLoading=true;
-    // Call authentication service
     this.authenticationService.login(this.credentials).subscribe({
       next: (res) => {
         this.isLoading = false;
@@ -66,7 +64,6 @@ export class LoginModalComponent {
         sessionStorage.setItem("token", res.token);
         this.authenticationService.isLoggedIn = true;
         
-        // Show success message and navigate after it completes
         this.swalService.showLoginSuccess().then(() => {
           this.router.navigate(['candidates']);
         });
@@ -85,7 +82,6 @@ export class LoginModalComponent {
   }
 
   closeModal(): void {
-    // Show confirmation dialog before closing if form has data
     if (this.hasFormData()) {
       this.swalService.showConfirmation(
         'Close Login?',
@@ -102,12 +98,10 @@ export class LoginModalComponent {
     }
   }
 
-  // Toggle password visibility
   togglePasswordVisibility(): void {
     this.hidePassword = !this.hidePassword;
   }
 
-  // Method to handle network errors specifically
   private handleNetworkError(): void {
     this.swalService.showNetworkError().then((result) => {
       if (result.isConfirmed) {
@@ -121,7 +115,6 @@ export class LoginModalComponent {
     return Object.values(formValues).some(value => value && value.toString().trim() !== '');
   }
 
-  // Method to handle forgot password will be later
   onForgotPassword(): void {
     this.swalService.showWarning(
       'Forgot Password',

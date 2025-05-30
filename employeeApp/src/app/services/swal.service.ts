@@ -9,7 +9,6 @@ export class SwalService {
 
   constructor() { }
 
-  // Success messages
   showSuccess(title: string, text: string, timer: number = 1500): Promise<any> {
     return Swal.fire({
       icon: 'success',
@@ -32,7 +31,6 @@ export class SwalService {
     });
   }
 
-  // Error messages with different types
   showError(title: string, text: string, confirmButtonText: string = 'Try Again'): Promise<any> {
     return Swal.fire({
       icon: 'error',
@@ -74,7 +72,7 @@ export class SwalService {
     });
   }
 
-  // Confirmation dialogs
+  // Conxfirmation dialogs
   showConfirmation(title: string, text: string, confirmText: string = 'Yes', cancelText: string = 'No'): Promise<any> {
     return Swal.fire({
       icon: 'question',

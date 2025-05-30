@@ -10,8 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-
-// ייבוא EmailJS
 import emailjs from '@emailjs/browser';
 import { InviteForInterviewComponent } from '../invite-for-interview/invite-for-interview.component';
 
